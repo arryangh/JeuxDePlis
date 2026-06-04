@@ -7,17 +7,16 @@
 #include "Team.h"
 
 
-void Team::clearPlis()
-{
+void Team::clearPlis(){
+	this->plisGagne.clear();
 }
 
-void Team::setPlisGagne(paquet_carte plis)
-{
+void Team::setPlisGagne(PaquetCarte* plis){
+	this->plisGagne.push_back(plis);
 }
 
-plis Team::getPlisGagne()
-{
-	return 0;
+PaquetCarte* Team::getPlisGagne(){
+	
 }
 
 void Team::setPointManche(int nb)
@@ -47,11 +46,11 @@ char Team::getTeamNom()
 	return 0;
 }
 
-void Team::setJoueurs(vector<joueur> joueurs)
+void Team::setJoueurs(vector<Joueur*> joueurs)
 {
 }
 
-vector<joueur> Team::getJoueurs()
+vector<Joueur*> Team::getJoueurs()
 {
 	return 0;
 }

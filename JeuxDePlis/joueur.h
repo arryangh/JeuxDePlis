@@ -7,27 +7,27 @@
 #include <iostream>
 #include <assert.h>
 
-#include "paquet_carte.h"
-#include "carte.h"
+#include "PaquetCarte.h"
+#include "Carte.h"
 
-class joueur
+class Joueur
 {
 private:
 	char nom ;
 
-	paquet_carte main;
+	PaquetCarte main;
 
 
 public:
-	void jouerCoup();
+	virtual void jouerCoup() = 0;
 
 	void setNom(char nom);
 
 	char getNom ();
 
-	void setMain(carte carte);
+	void setMain(Carte carte);
 
-	paquet_carte getMain();
+	PaquetCarte getMain();
 
 };
 #endif

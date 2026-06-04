@@ -7,15 +7,15 @@
 #include <iostream>
 #include <assert.h>
 
-#include "paquet_carte.h"
-#include "joueur.h"
+#include "PaquetCarte.h"
+#include "Joueur.h"
 
 using namespace std;
 
 class Team
 {
 private:
-	vector<paquet_carte> plisGagne;
+	vector<PaquetCarte*> plisGagne;
 
 	int pointManche;
 
@@ -23,15 +23,15 @@ private:
 
 	char teamNom;
 
-	vector<joueur> joueurs;
+	vector<Joueur*> joueurs;
 
 
 public:
 	void clearPlis();
 
-	void setPlisGagne(paquet_carte plis);
+	void setPlisGagne(PaquetCarte* plis);
 
-	paquet_carte getPlisGagne();
+	PaquetCarte* getPlisGagne();
 
 	void setPointManche(int nb);
 
@@ -45,9 +45,9 @@ public:
 
 	char getTeamNom();
 
-	void setJoueurs(vector<joueur> joueurs);
+	void setJoueurs(vector<Joueur*> joueurs);
 
-	vector<joueur> getJoueurs();
+	vector<Joueur*> getJoueurs();
 
 };
 #endif

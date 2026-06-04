@@ -4,24 +4,24 @@
 #include <iostream>
 #include <assert.h>
 
-#include "carte.h"
+#include "Carte.h"
 
-void carte::setValeur(int newvaleur)
+void Carte::setValeur(int newvaleur)
 {
 	valeur = newvaleur;
 }
 
-int carte::getValeur()
+int Carte::getValeur()
 {
 	return valeur;
 }
 
-void carte::setCouleur( Couleur newcouleur)
+void Carte::setCouleur( Couleur newcouleur)
 {
 	couleur = newcouleur;
 }
 
-carte::Couleur  carte::getCouleur()
+Carte::Couleur  Carte::getCouleur()
 {
 	return couleur;
 }

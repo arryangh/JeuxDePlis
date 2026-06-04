@@ -127,7 +127,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="carte.cpp" />
+    <ClCompile Include="Dame_de_Pique.cpp" />
+    <ClCompile Include="Humain.cpp" />
+    <ClCompile Include="IA.cpp" />
+    <ClCompile Include="Jeu.cpp" />
+    <ClCompile Include="joueur.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="paquet_carte.cpp" />
+    <ClCompile Include="Table_jeu.cpp" />
+    <ClCompile Include="Team.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="carte.h" />
+    <ClInclude Include="Dame_de_Pique.h" />
+    <ClInclude Include="Humain.h" />
+    <ClInclude Include="IA.h" />
+    <ClInclude Include="Jeu.h" />
+    <ClInclude Include="joueur.h" />
+    <ClInclude Include="paquet_carte.h" />
+    <ClInclude Include="Table_jeu.h" />
+    <ClInclude Include="Team.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

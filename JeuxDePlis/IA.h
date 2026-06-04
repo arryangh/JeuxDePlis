@@ -7,9 +7,9 @@
 #include <iostream>
 #include <assert.h>
 
-#include "joueur.h"
+#include "Joueur.h"
 
-class IA : public joueur
+class IA : public Joueur
 {
 };
 #endif

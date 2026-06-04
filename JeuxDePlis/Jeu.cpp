@@ -24,7 +24,7 @@ bool Jeu::checkPlis()
 	return 0;
 }
 
-joueur Jeu::playFirst()
+Joueur Jeu::playFirst()
 {
 	return 0;
 }
@@ -78,7 +78,7 @@ int Jeu::getPointsGagnant()
 	return 0;
 }
 
-void Jeu::setOrdreCarte(vector<carte> odreCarte)
+void Jeu::setOrdreCarte(vector<Carte> odreCarte)
 {
 }
 

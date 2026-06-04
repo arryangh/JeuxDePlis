@@ -7,7 +7,7 @@
 #include <iostream>
 #include <assert.h>
 
-class carte
+class Carte
 {
 private:
 	enum Couleur {

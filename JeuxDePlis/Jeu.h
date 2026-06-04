@@ -7,9 +7,9 @@
 #include <iostream>
 #include <assert.h>
 
-#include "paquet_carte.h"
-#include "carte.h"
-#include "joueur.h"
+#include "PaquetCarte.h"
+#include "Carte.h"
+#include "Joueur.h"
 
 using namespace std;
 
@@ -20,13 +20,13 @@ private:
 
 	int nbJoueurs;
 
-	paquet_carte paquetJeu;
+	PaquetCarte paquetJeu;
 
 	int nbManche;
 
 	int pointsGagnant;
 
-	vector<carte> ordreCarte;
+	vector<Carte> ordreCarte;
 
 
 public:
@@ -38,7 +38,7 @@ public:
 
 	bool checkPlis();
 
-	joueur playFirst();
+	Joueur playFirst();
 
 	void compterPoint();
 
@@ -50,9 +50,9 @@ public:
 
 	int getNbJoueurs();
 
-	void setPaquetJeu(paquet_carte paquetJeu);
+	void setPaquetJeu(PaquetCarte paquetJeu);
 
-	paquet_carte getPaquetJeu();
+	PaquetCarte getPaquetJeu();
 
 	void setNbManche(int nbManche);
 
@@ -62,7 +62,7 @@ public:
 
 	int getPointsGagnant();
 
-	void setOrdreCarte(vector<carte> odreCarte);
+	void setOrdreCarte(vector<Carte> odreCarte);
 
 	int getOrdreCarte();
 

@@ -4,27 +4,23 @@
 #include <iostream>
 #include <assert.h>
 
-#include "joueur.h"
+#include "Joueur.h"
 
 
-void joueur::jouerCoup()
-{
+
+
+void Joueur::setNom(char nom){
+	this->nom = nom;
 }
 
-void joueur::setNom(char nom)
-{
+char Joueur::getNom (){
+	return this->nom;
 }
 
-char joueur::getNom ()
-{
-	return 0;
+void Joueur::setMain(Carte carte){
+	// il faut la classe PaquerCarte
 }
 
-void joueur::setMain(carte carte)
-{
-}
-
-paquet_carte joueur::getMain()
-{
-	return 0;
+paquet_carte Joueur::getMain(){
+	return this->main;
 }
