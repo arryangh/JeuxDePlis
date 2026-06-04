@@ -6,26 +6,23 @@
 
 #include "carte.h"
 
-
-bool carte::carteJouable()
+void carte::setValeur(int newvaleur)
 {
-	return 0;
-}
-
-void carte::setValeur(int valeur)
-{
+	valeur = newvaleur;
 }
 
 int carte::getValeur()
 {
-	return 0;
+	return valeur;
 }
 
-void carte::setCouleur(int couleur)
+void carte::setCouleur( Couleur newcouleur)
 {
+	couleur = newcouleur;
 }
 
-int carte::getCouleur()
+carte::Couleur  carte::getCouleur()
 {
-	return 0;
+	return couleur;
 }
+

@@ -10,21 +10,26 @@
 class carte
 {
 private:
-	int couleur;
+	enum Couleur {
+		PIQUE,
+		TREFLE,
+		COEUR,
+		CARREAU
+	};
 
+	Couleur couleur;
 	int valeur;
 
 
 public:
-	bool carteJouable();
 
 	void setValeur(int valeur);
 
 	int getValeur();
 
-	void setCouleur(int couleur);
+	void setCouleur(Couleur couleur);
 
-	int getCouleur();
+	Couleur getCouleur();
 
 };
 #endif
