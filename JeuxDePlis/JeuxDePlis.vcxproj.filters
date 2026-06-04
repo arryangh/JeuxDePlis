@@ -21,10 +21,10 @@
     <ClCompile Include="Team.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="carte.cpp">
+    <ClCompile Include="Carte.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Dame_de_Pique.cpp">
+    <ClCompile Include="DameDePique.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Humain.cpp">
@@ -36,21 +36,21 @@
     <ClCompile Include="Jeu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="joueur.cpp">
+    <ClCompile Include="Joueur.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="paquet_carte.cpp">
+    <ClCompile Include="PaquetCarte.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Table_jeu.cpp">
+    <ClCompile Include="TableJeu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="carte.h">
+    <ClInclude Include="Carte.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dame_de_Pique.h">
+    <ClInclude Include="DameDePique.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Humain.h">
@@ -62,13 +62,13 @@
     <ClInclude Include="Jeu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="joueur.h">
+    <ClInclude Include="Joueur.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="paquet_carte.h">
+    <ClInclude Include="PaquetCarte.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Table_jeu.h">
+    <ClInclude Include="TableJeu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Team.h">
