@@ -25,7 +25,7 @@ public:
 
 	char getNom ();
 
-	void setMain(Carte carte);
+	void setMain(PaquetCarte carte);
 
 	PaquetCarte getMain();
 

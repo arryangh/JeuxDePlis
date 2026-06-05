@@ -17,10 +17,10 @@ char Joueur::getNom (){
 	return this->nom;
 }
 
-void Joueur::setMain(Carte carte){
-	// il faut la classe PaquerCarte
+void Joueur::setMain(PaquetCarte carte){
+	this->main = carte;
 }
 
-paquet_carte Joueur::getMain(){
+PaquetCarte Joueur::getMain(){
 	return this->main;
 }
