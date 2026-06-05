@@ -33,17 +33,17 @@ private:
 
 
 public:
-	virtual void distribuer();
+	virtual void distribuer() = 0;
 
-	void jouerCarte();
+	virtual void jouerCarte() = 0;
 
-	void checkWin();
+	virtual void checkWin() = 0;
 
-	bool checkPlis();
+	virtual bool checkPlis() = 0;
 
 	virtual Joueur playFirst() = 0;
 
-	void compterPoint();
+	virtual void compterPoint() = 0;
 
 	void setDistribution(int newNb);
 
