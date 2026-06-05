@@ -5,68 +5,44 @@
 #include <assert.h>
 
 #include "Jeu.h"
+#include "PaquetCarte.h"
+
+		
 
 
-void Jeu::distribuer()
-{
-}
-
-void Jeu::jouerCarte()
-{
-}
-
-void Jeu::checkWin()
-{
-}
-
-bool Jeu::checkPlis()
-{
-	return 0;
-}
-
-Joueur Jeu::playFirst()
-{
-	return 0;
-}
-
-void Jeu::compterPoint()
-{
-}
-
-void Jeu::setDistribution(int distribution)
-{
+void Jeu::setDistribution(int newNb){
+	distribution = newNb;
 }
 
 int Jeu::getDistribution()
 {
-	return 0;
+	return distribution;
 }
 
-void Jeu::setNbJoueurs()
-{
+void Jeu::setNbJoueurs(int newNb){
+	nbJoueurs = newNb;
 }
 
-int Jeu::getNbJoueurs()
-{
-	return 0;
+int Jeu::getNbJoueurs(){
+	return nbJoueurs;
 }
 
-void Jeu::setPaquetJeu(paquet_carte paquetJeu)
-{
+void Jeu::setPaquetJeu(PaquetCarte newPaquetJeu){
+	paquetJeu = newPaquetJeu;
 }
 
-paquet_carte Jeu::getPaquetJeu()
+PaquetCarte Jeu::getPaquetJeu()
 {
-	return 0;
+	return paquetJeu;
 }
 
-void Jeu::setNbManche(int nbManche)
-{
+void Jeu::setNbManche(int newNb){
+	nbManche = newNb;
 }
 
 int Jeu::getNbManche()
 {
-	return 0;
+	return nbManche;
 }
 
 void Jeu::setPointsGagnant(int pointsGagnant)
@@ -82,7 +58,10 @@ void Jeu::setOrdreCarte(vector<Carte> odreCarte)
 {
 }
 
-int Jeu::getOrdreCarte()
-{
-	return 0;
+vector<unique_ptr<Carte>> Jeu::getOrdreCarte(){
+	return ordreCarte;
+}
+
+void setTeam(vector<Team> newTeam) {
+
 }

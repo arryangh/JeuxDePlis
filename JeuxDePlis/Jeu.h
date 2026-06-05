@@ -10,6 +10,7 @@
 #include "PaquetCarte.h"
 #include "Carte.h"
 #include "Joueur.h"
+#include "Team.h"
 
 using namespace std;
 
@@ -26,11 +27,13 @@ private:
 
 	int pointsGagnant;
 
-	vector<Carte> ordreCarte;
+	vector<unique_ptr<Carte>> ordreCarte;
+
+	vector<Team*> team;
 
 
 public:
-	void distribuer();
+	virtual void distribuer();
 
 	void jouerCarte();
 
@@ -38,15 +41,15 @@ public:
 
 	bool checkPlis();
 
-	Joueur playFirst();
+	virtual Joueur playFirst() = 0;
 
 	void compterPoint();
 
-	void setDistribution(int distribution);
+	void setDistribution(int newNb);
 
 	int getDistribution();
 
-	void setNbJoueurs();
+	void setNbJoueurs(int newNb);
 
 	int getNbJoueurs();
 
@@ -64,7 +67,10 @@ public:
 
 	void setOrdreCarte(vector<Carte> odreCarte);
 
-	int getOrdreCarte();
+	vector<unique_ptr<Carte>> getOrdreCarte();
 
+	void setTeam(vector<Team> newTeam);
+
+	vector<Team*> getTeam() { return team; };
 };
 #endif
