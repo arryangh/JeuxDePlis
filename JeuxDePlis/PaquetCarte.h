@@ -14,15 +14,18 @@ using namespace std;
 class PaquetCarte
 {
 private:
-	vector<Carte> listeCartePaquet;
+	std::vector<std::unique_ptr<Carte>> listeCartePaquet;
 
 
 public:
+	
+	PaquetCarte();
+
 	void trie(vector<Carte> ordre);
 
 	void afficherPaquet();
 
-	void addCarte(Carte carte);
+	void addCarte(std::unique_ptr<Carte> carte);
 
 	void giveCard(int carte, int paquet_carte);
 
