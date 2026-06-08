@@ -6,6 +6,8 @@
 #include "Carte.h"
 
 
+Carte::Carte() {};
+
 void Carte::setValeur(int newvaleur)
 {
 	valeur = newvaleur;

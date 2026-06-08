@@ -19,6 +19,8 @@ private:
 
 
 public:
+	Joueur() {};
+
 	virtual void jouerCoup() = 0;
 
 	void setNom(char nom);
