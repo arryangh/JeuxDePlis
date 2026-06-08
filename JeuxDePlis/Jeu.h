@@ -50,16 +50,16 @@ public:
 
 	virtual void distribuer();
 
-	void jouerCarte();
+	virtual void jouerCarte() = 0;
 
-	void checkWin();
+	virtual void checkWin() = 0;
 
-	bool checkPlis();
+	virtual bool checkPlis() = 0;
 
 	// ne doit pas être virtuelle pure, sinon ça rend la classe abstraite (et donc non instanciable)
 	virtual Joueur playFirst(); 
 
-	void compterPoint();
+	virtual void compterPoint() = 0;
 
 	void setDistribution(int newNb);
 

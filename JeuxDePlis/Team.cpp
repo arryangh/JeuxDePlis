@@ -1,6 +1,8 @@
 // Team.cpp
 #include "Team.h"
 
+Team::Team() {};
+
 void Team::clearPlis() {
     this->plisGagne.clear();
 }

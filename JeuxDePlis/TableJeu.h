@@ -16,8 +16,10 @@ class TableJeu
 private:
 	PaquetCarte plis;
 
-
 public:
+	
+	TableJeu();
+
 	Jeu choixJeu();
 
 	void setPlis(Carte carte);
