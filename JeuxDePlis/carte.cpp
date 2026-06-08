@@ -3,8 +3,8 @@
 #include <list>
 #include <iostream>
 #include <assert.h>
-
 #include "Carte.h"
+
 
 void Carte::setValeur(int newvaleur)
 {

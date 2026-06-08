@@ -3,28 +3,39 @@
 #include <list>
 #include <iostream>
 #include <assert.h>
+#include <algorithm>
 #include "PaquetCarte.h"
-//pas besoin de faire add et delete car on modifie juste le pointeur
+
+
+
 PaquetCarte::PaquetCarte()
 {
 }
 
-void PaquetCarte::trie(vector<Carte> ordre)
-{
-}
 
 void PaquetCarte::afficherPaquet()
 {
+	for (const auto& carte : listeCartePaquet)
+	{
+		std::cout << "" << carte->getValeur() << "" << carte->getCouleur() << std::endl;
+	}
 }
 
 void PaquetCarte::addCarte(std::unique_ptr<Carte> carte)
 {
-	listeCartePaquet.push_back(std::move(carte));
+	listeCartePaquet.push_back(move(carte)); // ajoute la carte au paquet en transférant la propriété du pointeur unique
 }
 
-void PaquetCarte::giveCard(int carte, int paquet_carte)
+
+void PaquetCarte::giveCard(size_t indexCarte, PaquetCarte& destination)
 {
+	assert(indexCarte < listeCartePaquet.size());      //vérifie que l'index est valide
+
+	destination.addCarte(std::move(listeCartePaquet[indexCarte])); // transfère la carte du paquet actuel vers le paquet de destination
+
+	listeCartePaquet.erase(listeCartePaquet.begin() + indexCarte); // supprime le pointeur null après l'avoir transférée
 }
+
 
 void PaquetCarte::deleteCard()
 {
@@ -34,7 +45,12 @@ void PaquetCarte::deleteCard()
 	}
 }
 
-std::vector<std::unique_ptr<Carte>> PaquetCarte::getListeCartePaquet()
+vector<unique_ptr<Carte>> PaquetCarte::getListeCartePaquet()
 {
 	return listeCartePaquet;
+}
+
+void MelangerPaquet()
+{
+	
 }
