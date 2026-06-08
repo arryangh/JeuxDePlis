@@ -31,5 +31,6 @@ public:
 
 	vector<unique_ptr<Carte>> getListeCartePaquet();
 
+	void MelangerPaquet();
 };
 #endif
