@@ -8,16 +8,11 @@
 
 TableJeu::TableJeu() {};
 
-Jeu TableJeu::choixJeu()
-{
-	return 0;
+
+void TableJeu::setPlis(PaquetCarte paquet_carte) {
+	TableJeu::paquetCarte = paquet_carte;
 }
 
-void TableJeu::setPlis(Carte carte)
-{
-}
-
-PaquetCarte TableJeu::getPlis()
-{
-	return 0;
+PaquetCarte TableJeu::getPlis(){
+	return TableJeu::paquetCarte;
 }
