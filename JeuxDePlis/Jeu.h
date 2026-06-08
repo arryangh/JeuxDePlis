@@ -17,8 +17,6 @@ using namespace std;
 class Jeu
 {
 private:
-	// variable de classe 
-	static Jeu* jeu;
 
 	int distribution;
 
@@ -34,13 +32,12 @@ private:
 
 	vector<Team*> team;
 
-	// constructeur privé pour le singleton
-	Jeu();
+	
 
 
 public:
 
-	static Jeu* getInstance();
+	Jeu();
 
 	virtual void distribuer() = 0;
 
@@ -50,8 +47,7 @@ public:
 
 	virtual bool checkPlis() = 0;
 
-	// ne doit pas être virtuelle pure, sinon ça rend la classe abstraite (et donc non instanciable)
-	const int playFirst(); 
+	virtual const int playFirst() = 0; 
 
 	virtual void compterPoint() = 0;
 

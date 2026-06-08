@@ -10,16 +10,6 @@
 		
 Jeu::Jeu() {};
 
-Jeu* Jeu::jeu = nullptr;
-
-Jeu* Jeu::getInstance() {
-	if (jeu == nullptr) {
-		jeu = new Jeu();
-	}
-	return jeu;
-}
-
-const int Jeu::playFirst() {};
 
 void Jeu::setDistribution(int newNb){
 	distribution = newNb;
