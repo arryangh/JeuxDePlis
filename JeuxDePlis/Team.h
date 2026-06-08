@@ -22,16 +22,28 @@ private:
     vector<shared_ptr<Joueur>> joueurs;
 
 public:
+    Team();
+
     void clearPlis();
+
     void setPlisGagne(unique_ptr<PaquetCarte> plis);
+
     PaquetCarte* getPlisGagne();
+
     void setPointManche(int nb);
+
     int getPointManche();
+
     void setNbPoint(int nb);
+
     int getNbPoint();
+
     void setTeamNom(char nom);
+
     char getTeamNom();
+
     void setJoueurs(vector<shared_ptr<Joueur>> joueurs);
+
     vector<shared_ptr<Joueur>> getJoueurs();
 };
 

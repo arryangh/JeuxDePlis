@@ -7,7 +7,7 @@
 #include "Joueur.h"
 
 
-
+Joueur::Joueur() {};
 
 void Joueur::setNom(char nom){
 	this->nom = nom;

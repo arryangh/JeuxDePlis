@@ -23,6 +23,8 @@ private:
 
 public:
 
+	Carte();
+
 	void setValeur(int valeur);
 
 	int getValeur();

@@ -6,6 +6,7 @@
 
 #include "TableJeu.h"
 
+TableJeu::TableJeu() {};
 
 Jeu TableJeu::choixJeu()
 {
