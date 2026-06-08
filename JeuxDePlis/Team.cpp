@@ -46,11 +46,11 @@ int Team::getNbPoint() {
     return this->nbPoint;
 }
 
-void Team::setTeamNom(char nom) {
+void Team::setTeamNom(string nom) {
     this->teamNom = nom;
 }
 
-char Team::getTeamNom() {
+string Team::getTeamNom() {
     return this->teamNom;
 }
 
