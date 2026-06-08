@@ -6,6 +6,7 @@
 #include <list>
 #include <iostream>
 #include <assert.h>
+#include <memory> 
 
 #include "PaquetCarte.h"
 #include "Carte.h"
@@ -17,6 +18,9 @@ using namespace std;
 class Jeu
 {
 private:
+	// variable de classe 
+	static Jeu* jeu;
+
 	int distribution;
 
 	int nbJoueurs;
@@ -31,8 +35,19 @@ private:
 
 	vector<Team*> team;
 
+	// constructeur privé pour le singleton
+	Jeu();
+
 
 public:
+
+	static Jeu* getInstance() {
+		if (jeu == nullptr) {
+			jeu = new Jeu();
+		}
+		return jeu;
+	}
+
 	virtual void distribuer();
 
 	void jouerCarte();
@@ -41,7 +56,8 @@ public:
 
 	bool checkPlis();
 
-	virtual Joueur playFirst() = 0;
+	// ne doit pas être virtuelle pure, sinon ça rend la classe abstraite (et donc non instanciable)
+	virtual Joueur playFirst(); 
 
 	void compterPoint();
 

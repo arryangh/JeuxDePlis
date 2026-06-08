@@ -8,7 +8,7 @@
 #include "PaquetCarte.h"
 
 		
-
+Jeu::Jeu() {};
 
 void Jeu::setDistribution(int newNb){
 	distribution = newNb;
