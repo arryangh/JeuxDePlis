@@ -18,11 +18,13 @@ private:
     vector<unique_ptr<PaquetCarte>> plisGagne;
     int pointManche;
     int nbPoint;
-    char teamNom;
+    string teamNom;
     vector<shared_ptr<Joueur>> joueurs;
 
 public:
     Team();
+
+    Team(string nomTeam);
 
     void clearPlis();
 
@@ -38,9 +40,9 @@ public:
 
     int getNbPoint();
 
-    void setTeamNom(char nom);
+    void setTeamNom(string nom);
 
-    char getTeamNom();
+    string getTeamNom();
 
     void setJoueurs(vector<shared_ptr<Joueur>> joueurs);
 

@@ -1,7 +1,11 @@
 // Team.cpp
 #include "Team.h"
 
-Team::Team() {};
+// constructeur par défaut de Team, instancie les attributs à 0
+Team::Team() : pointManche(0), nbPoint(0), teamNom('\0') {}
+
+// constructeur de confort avec le nom de l'équipe
+Team::Team(string nomTeam) : pointManche(0), nbPoint(0), teamNom(nomTeam) {}
 
 void Team::clearPlis() {
     this->plisGagne.clear();
