@@ -2,7 +2,7 @@
 #include "Team.h"
 
 // constructeur par défaut de Team, instancie les attributs à 0
-Team::Team() : pointManche(0), nbPoint(0), teamNom('\0') {}
+Team::Team() : pointManche(0), nbPoint(0), teamNom("") {}
 
 // constructeur de confort avec le nom de l'équipe
 Team::Team(string nomTeam) : pointManche(0), nbPoint(0), teamNom(nomTeam) {}
@@ -24,9 +24,8 @@ void Team::setPlisGagne(unique_ptr<PaquetCarte> plis) {
 /*
 La fonction retourne un pointeur brut sans transferer sa propriété pour consulter le vector "plisGagne"
 */
-PaquetCarte* Team::getPlisGagne() {
-    if (this->plisGagne.empty()) return nullptr;
-    return this->plisGagne.back().get();
+const vector<unique_ptr<PaquetCarte>>& Team::getPlisGagne() const {
+    return this->plisGagne;
 }
 
 
@@ -46,7 +45,7 @@ int Team::getNbPoint() {
     return this->nbPoint;
 }
 
-void Team::setTeamNom(string nom) {
+void Team::setTeamNom(const string& nom) {
     this->teamNom = nom;
 }
 
@@ -64,6 +63,7 @@ void Team::setJoueurs(vector<shared_ptr<Joueur>> joueurs) {
 }
 
 // la méthode appelant renvoie "le vecteur pointeur partagé de joueur" par valeur
-vector<shared_ptr<Joueur>> Team::getJoueurs() {
+// retourner une référence const
+const vector<shared_ptr<Joueur>>& Team::getJoueurs() const {
     return this->joueurs;
 }

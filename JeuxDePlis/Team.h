@@ -30,7 +30,8 @@ public:
 
     void setPlisGagne(unique_ptr<PaquetCarte> plis);
 
-    PaquetCarte* getPlisGagne();
+    // on renvoie l'adresse du vecteur de pointeurs (pour éviter de le recopier inutillement)
+    const vector<unique_ptr<PaquetCarte>>& getPlisGagne() const;
 
     void setPointManche(int nb);
 
@@ -40,7 +41,8 @@ public:
 
     int getNbPoint();
 
-    void setTeamNom(string nom);
+    // on copie pas inutilement le string (on le prend par réfernce)
+    void setTeamNom(const string& nom);
 
     string getTeamNom();
 
