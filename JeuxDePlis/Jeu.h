@@ -41,12 +41,7 @@ private:
 
 public:
 
-	static Jeu* getInstance() {
-		if (jeu == nullptr) {
-			jeu = new Jeu();
-		}
-		return jeu;
-	}
+	static Jeu* getInstance();
 
 	virtual void distribuer();
 
