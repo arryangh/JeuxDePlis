@@ -7,7 +7,6 @@
 #include <iostream>
 #include <assert.h>
 #include <memory> 
-
 #include "PaquetCarte.h"
 #include "Carte.h"
 #include "Joueur.h"
@@ -31,7 +30,7 @@ private:
 
 	int pointsGagnant;
 
-	vector<unique_ptr<Carte>> ordreCarte;
+	list<string> ordreCarte;
 
 	vector<Team*> team;
 
@@ -43,7 +42,7 @@ public:
 
 	static Jeu* getInstance();
 
-	virtual void distribuer();
+	virtual void distribuer() = 0;
 
 	virtual void jouerCarte() = 0;
 
@@ -52,7 +51,7 @@ public:
 	virtual bool checkPlis() = 0;
 
 	// ne doit pas être virtuelle pure, sinon ça rend la classe abstraite (et donc non instanciable)
-	virtual Joueur playFirst(); 
+	const int playFirst(); 
 
 	virtual void compterPoint() = 0;
 
@@ -76,11 +75,11 @@ public:
 
 	int getPointsGagnant();
 
-	void setOrdreCarte(vector<Carte> odreCarte);
+	void setOrdreCarte(list<string> odreCarte);
 
-	vector<unique_ptr<Carte>> getOrdreCarte();
+	list<string> getOrdreCarte();
 
-	void setTeam(vector<Team> newTeam);
+	void setTeam(vector<Team*> newTeam);
 
 	vector<Team*> getTeam() { return team; };
 };
