@@ -14,15 +14,13 @@
 class TableJeu
 {
 private:
-	PaquetCarte plis;
+	PaquetCarte paquetCarte;
 
 public:
 	
 	TableJeu();
 
-	Jeu choixJeu();
-
-	void setPlis(Carte carte);
+	void setPlis(PaquetCarte paquet_carte);
 
 	PaquetCarte getPlis();
 
