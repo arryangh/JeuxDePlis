@@ -19,6 +19,8 @@ Jeu* Jeu::getInstance() {
 	return jeu;
 }
 
+const int Jeu::playFirst() {};
+
 void Jeu::setDistribution(int newNb){
 	distribution = newNb;
 }
@@ -54,23 +56,25 @@ int Jeu::getNbManche()
 	return nbManche;
 }
 
-void Jeu::setPointsGagnant(int pointsGagnant)
+void Jeu::setPointsGagnant(int newPointsGagnant)
 {
+	pointsGagnant = newPointsGagnant;
 }
 
 int Jeu::getPointsGagnant()
 {
-	return 0;
+	return pointsGagnant;
 }
 
-void Jeu::setOrdreCarte(vector<Carte> odreCarte)
+void Jeu::setOrdreCarte(list<string> newOrdreCarte)
 {
+	ordreCarte = newOrdreCarte;
 }
 
-vector<unique_ptr<Carte>> Jeu::getOrdreCarte(){
+list<string> Jeu::getOrdreCarte(){
 	return ordreCarte;
 }
 
-void setTeam(vector<Team> newTeam) {
-
+void Jeu::setTeam(vector<Team*> newTeam) {
+	team = newTeam;
 }
