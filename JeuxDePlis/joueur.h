@@ -16,7 +16,8 @@ private:
 	char nom ;
 
 	PaquetCarte main;
-
+	
+	int idjoueur;
 
 public:
 	Joueur() {};
@@ -29,7 +30,9 @@ public:
 
 	void setMain(PaquetCarte carte);
 
-	PaquetCarte getMain();
+	PaquetCarte& getMain();
+
+	int getIdjoueur() const;
 
 };
 #endif
