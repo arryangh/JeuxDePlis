@@ -4,6 +4,7 @@
 #include <iostream>
 #include <assert.h>
 #include <algorithm>
+#include <random>
 #include "PaquetCarte.h"
 
 
@@ -50,7 +51,9 @@ vector<unique_ptr<Carte>> PaquetCarte::getListeCartePaquet()
 	return listeCartePaquet;
 }
 
-void MelangerPaquet()
+void PaquetCarte::MelangerPaquet()
 {
-	
+	std::random_device rd;
+	std::mt19937 gen(rd());
+	std::shuffle(listeCartePaquet.begin(),listeCartePaquet.end(),gen);
 }
