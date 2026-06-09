@@ -6,4 +6,9 @@
 
 #include "IA.h"
 
+void IA::jouerCoup() {
+	//give carte pour carte dans plis
+
+}
+
 

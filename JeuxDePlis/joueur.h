@@ -19,7 +19,7 @@ private:
 
 
 public:
-	Joueur() {};
+	Joueur();
 
 	virtual void jouerCoup() = 0;
 

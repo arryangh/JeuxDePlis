@@ -11,5 +11,6 @@
 
 class IA : public Joueur
 {
+	void jouerCoup() override;
 };
 #endif
