@@ -84,5 +84,11 @@ public:
 		return team;
 	}
 	Joueur* getJoueurById(int id);
+	
+	TableJeu& getTable() {
+		return *table;
+	}	
+
+	bool CompareCarte(const unique_ptr<Carte>& carte1, const unique_ptr<Carte>& carte2);
 };
 #endif

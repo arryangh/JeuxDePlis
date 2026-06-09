@@ -35,6 +35,8 @@ void DameDePique::jouerCarte() {
 
 }
 
+
+
 void DameDePique::checkWin() {
 	for (size_t i = 0; i < getNbEquipe(); i++) {
 		if (getTeam()[i]->getNbPoint() >= getPointsGagnant()) {
@@ -45,21 +47,36 @@ void DameDePique::checkWin() {
 }
 
 int DameDePique::gagnantPlis() {
-	int idgagnant = 0;
-	string firstCouleur = "";
-	TableJeu table;
+	string firstCouleur = "null";
+	TableJeu* table = &getTable();
+	PaquetCarte plis = table->getPlis();
+	int idfirstjoueur = table->getIdPremierJoueur();
+	int idgagnant = idfirstjoueur;
+	string valeurgagnant = "null";
 	// on parcourt les cartes jouées pour trouver la première couleur jouée	
 	for (size_t i = 0; i < getNbJoueurs(); i++)
 	{
-		const auto& cartes = getPlis()[i]->getListeCartePaquet();
-		
-	}
+		const auto& carte = plis.getListeCartePaquet()[i];
+		if ( firstCouleur == "null") {
+			firstCouleur = carte->getCouleur();
+			valeurgagnant = carte->getValeur();
+		}
+		else if (carte->getCouleur() == firstCouleur) {
+			if (CompareCarte(carte, plis.getListeCartePaquet()[idgagnant])) {
+				idgagnant = i;
+				valeurgagnant = carte->getValeur();
+			}
+		}
 
+
+	}
+	table->setIdPremierJoueur(idgagnant);
 	return 0;
 }
 bool DameDePique::checkPlis() {}
 
 const int DameDePique::playFirst() {
+	TableJeu* table = &getTable();
 	if (getJoueurById(0)->getMain().PaquetSize() == 13) {
 		for (size_t i=0; i<getNbJoueurs(); i++)
 		{
@@ -70,7 +87,7 @@ const int DameDePique::playFirst() {
 				if (carte->getValeur() == "2" &&
 					carte->getCouleur() == "Trefle")
 				{
-					setIdPremierJoueur(i)
+					table->setIdPremierJoueur(i);
 					return i;
 				}
 			}
@@ -78,7 +95,8 @@ const int DameDePique::playFirst() {
 
 	}
 	else {
-		return gagnantPlis();
+		int premierjoueur = table->getIdPremierJoueur();
+		return ( premierjoueur) ;
 	}
 }
 const int DameDePique::playNext() {

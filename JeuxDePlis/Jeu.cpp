@@ -83,3 +83,10 @@ Joueur* Jeu::getJoueurById(int id) {
 	}
 	return nullptr; // Si aucun joueur avec cet ID n'est trouvé
 }
+
+bool Jeu::CompareCarte(const unique_ptr<Carte>& carte1, const unique_ptr<Carte>& carte2) {
+	int hauteurCarte1 = distance(ordreCarte.begin(), find(ordreCarte.begin(), ordreCarte.end(), carte1->getValeur()));
+	int hauteurCarte2 = distance(ordreCarte.begin(), find(ordreCarte.begin(), ordreCarte.end(), carte2->getValeur()));
+
+	return hauteurCarte1 > hauteurCarte2;
+}
