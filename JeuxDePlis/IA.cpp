@@ -7,8 +7,12 @@
 #include "IA.h"
 
 void IA::jouerCoup() {
-	//give carte pour carte dans plis
+	vector<unique_ptr<Carte>> cartesJouables;
+	for(const Carte& carte : )
+
 
 }
+
+
 
 

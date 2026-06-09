@@ -15,6 +15,7 @@ class TableJeu
 {
 private:
 	PaquetCarte plis;
+
 	int idpremierJoueur;
 
 public:
