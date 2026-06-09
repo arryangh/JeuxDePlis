@@ -21,6 +21,10 @@ void Joueur::setMain(PaquetCarte carte){
 	this->main = carte;
 }
 
-PaquetCarte Joueur::getMain(){
+PaquetCarte& Joueur::getMain(){
 	return this->main;
+}
+
+int Joueur::getIdjoueur() const {
+	return idjoueur;
 }

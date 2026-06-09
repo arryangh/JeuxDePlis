@@ -24,6 +24,11 @@ void Jeu::setNbJoueurs(int newNb){
 	nbJoueurs = newNb;
 }
 
+size_t Jeu::getNbEquipe()
+{
+	size_t nbEquipes = team.size();
+	return team.size();
+}
 int Jeu::getNbJoueurs(){
 	return nbJoueurs;
 }
@@ -67,4 +72,14 @@ list<string> Jeu::getOrdreCarte(){
 
 void Jeu::setTeam(vector<Team*> newTeam) {
 	team = newTeam;
+}
+Joueur* Jeu::getJoueurById(int id) {
+	for (Team* t : team) {
+		for (const auto& joueur : t->getJoueurs()) {
+			if (joueur->getIdjoueur() == id) {
+				return joueur.get();
+			}
+		}
+	}
+	return nullptr; // Si aucun joueur avec cet ID n'est trouvé
 }

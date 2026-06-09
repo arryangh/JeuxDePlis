@@ -7,31 +7,25 @@
 #include <iostream>
 #include <assert.h>
 
+using namespace std;
 class Carte
 {
 private:
-	enum Couleur {
-		PIQUE,
-		TREFLE,
-		COEUR,
-		CARREAU
-	};
-
-	Couleur couleur;
-	int valeur;
+	string couleur;
+	string valeur;
 
 
 public:
 
 	Carte();
 
-	void setValeur(int valeur);
+	void setValeur(string valeur);
 
-	int getValeur();
+	string getValeur();
 
-	void setCouleur(Couleur couleur);
+	void setCouleur(string couleur);
 
-	Couleur getCouleur();
+	string getCouleur();
 
 };
 #endif

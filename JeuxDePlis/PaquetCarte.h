@@ -32,5 +32,9 @@ public:
 	vector<unique_ptr<Carte>> getListeCartePaquet();
 
 	void MelangerPaquet();
+
+	size_t PaquetSize() const { return listeCartePaquet.size();}
+
+
 };
 #endif

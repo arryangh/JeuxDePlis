@@ -8,22 +8,22 @@
 
 Carte::Carte() {};
 
-void Carte::setValeur(int newvaleur)
+void Carte::setValeur(string newvaleur)
 {
 	valeur = newvaleur;
 }
 
-int Carte::getValeur()
+string Carte::getValeur()
 {
 	return valeur;
 }
 
-void Carte::setCouleur( Couleur newcouleur)
+void Carte::setCouleur( string newcouleur)
 {
 	couleur = newcouleur;
 }
 
-Carte::Couleur  Carte::getCouleur()
+string  Carte::getCouleur()
 {
 	return couleur;
 }

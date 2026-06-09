@@ -16,7 +16,7 @@ using namespace std;
 
 class Jeu
 {
-private:
+protected:
 
 	int distribution;
 
@@ -59,6 +59,8 @@ public:
 
 	int getNbJoueurs();
 
+	size_t getNbEquipe();
+
 	void setPaquetJeu(PaquetCarte paquetJeu);
 
 	PaquetCarte getPaquetJeu();
@@ -77,6 +79,9 @@ public:
 
 	void setTeam(vector<Team*> newTeam);
 
-	vector<Team*> getTeam() { return team; };
+	const std::vector<Team*>& getTeam() const {
+		return team;
+	}
+	Joueur* getJoueurById(int id);
 };
 #endif
