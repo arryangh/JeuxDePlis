@@ -14,7 +14,8 @@
 class TableJeu
 {
 private:
-	PaquetCarte paquetCarte;
+	PaquetCarte plis;
+	int idpremierJoueur;
 
 public:
 	
@@ -24,5 +25,8 @@ public:
 
 	PaquetCarte getPlis();
 
+	void setIdPremierJoueur(int id);
+
+	int getIdPremierJoueur();
 };
 #endif

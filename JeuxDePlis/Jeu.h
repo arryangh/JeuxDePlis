@@ -11,6 +11,7 @@
 #include "Carte.h"
 #include "Joueur.h"
 #include "Team.h"
+#include "TableJeu.h"
 
 using namespace std;
 
@@ -32,7 +33,7 @@ protected:
 
 	vector<Team*> team;
 
-	
+	TableJeu* table;
 
 
 public:

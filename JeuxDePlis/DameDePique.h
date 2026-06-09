@@ -25,7 +25,7 @@ private:
 
 public :
 
-	DameDePique* getInstance() {
+	static DameDePique* getInstance() {
 		if (dameDePique == nullptr) {
 			dameDePique = new DameDePique();
 		}
@@ -39,9 +39,13 @@ public :
 
 	void checkWin() override;
 
+	int gagnantPlis();
+
 	bool checkPlis() override;//carte jouable 
 
 	const int playFirst() override;
+
+	const int playNext() ;
 
 	void compterPoint() override;
 

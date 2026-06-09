@@ -10,9 +10,17 @@ TableJeu::TableJeu() {};
 
 
 void TableJeu::setPlis(PaquetCarte paquet_carte) {
-	TableJeu::paquetCarte = paquet_carte;
+	TableJeu::plis = paquet_carte;
 }
 
 PaquetCarte TableJeu::getPlis(){
-	return TableJeu::paquetCarte;
+	return TableJeu::plis;
 }
+
+void TableJeu::setIdPremierJoueur(int id) {
+	TableJeu::idpremierJoueur = id;
+}
+
+int TableJeu::getIdPremierJoueur() {
+	return TableJeu::idpremierJoueur;
+}	
