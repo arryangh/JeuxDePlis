@@ -37,7 +37,6 @@ public :
 
 	void jouerCarte() override;
 
-	bool CompareCarte(const unique_ptr<Carte>& carte1, const unique_ptr<Carte>& carte2);
 
 	void checkWin() override;
 

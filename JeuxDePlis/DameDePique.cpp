@@ -60,7 +60,7 @@ int DameDePique::gagnantPlis() {
 		if ( firstCouleur == "null") {
 			firstCouleur = carte->getCouleur();
 			valeurgagnant = carte->getValeur();
-		}
+		}    
 		else if (carte->getCouleur() == firstCouleur) {
 			if (CompareCarte(carte, plis.getListeCartePaquet()[idgagnant])) {
 				idgagnant = i;
