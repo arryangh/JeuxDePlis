@@ -17,6 +17,10 @@ using namespace std;
 
 class Jeu
 {
+private:
+
+	static Jeu* jeuCourant;
+
 protected:
 
 	int distribution;
@@ -35,10 +39,13 @@ protected:
 
 	TableJeu* table;
 
+	static void setJeuCourant(Jeu* jeu) { jeuCourant = jeu; }
 
 public:
 
 	Jeu();
+
+	static Jeu* getJeuCourant() { return jeuCourant; }
 
 	virtual void distribuer() = 0;
 
@@ -52,43 +59,43 @@ public:
 
 	virtual void compterPoint() = 0;
 
-	void setDistribution(int newNb);
+	virtual void setDistribution(int newNb);
 
-	int getDistribution();
+	virtual int getDistribution();
 
-	void setNbJoueurs(int newNb);
+	virtual void setNbJoueurs(int newNb);
 
-	int getNbJoueurs();
+	virtual int getNbJoueurs();
 
-	size_t getNbEquipe();
+	virtual size_t getNbEquipe();
 
-	void setPaquetJeu(PaquetCarte paquetJeu);
+	virtual void setPaquetJeu(PaquetCarte paquetJeu);
 
-	PaquetCarte getPaquetJeu();
+	virtual PaquetCarte getPaquetJeu();
 
-	void setNbManche(int nbManche);
+	virtual void setNbManche(int nbManche);
 
-	int getNbManche();
+	virtual int getNbManche();
 
-	void setPointsGagnant(int pointsGagnant);
+	virtual void setPointsGagnant(int pointsGagnant);
 
-	int getPointsGagnant();
+	virtual int getPointsGagnant();
 
-	void setOrdreCarte(list<string> odreCarte);
+	virtual void setOrdreCarte(list<string> odreCarte);
 
-	list<string> getOrdreCarte();
+	virtual list<string> getOrdreCarte();
 
-	void setTeam(vector<Team*> newTeam);
+	virtual void setTeam(vector<Team*> newTeam);
 
-	const std::vector<Team*>& getTeam() const {
+	virtual const std::vector<Team*>& getTeam() const {
 		return team;
 	}
-	Joueur* getJoueurById(int id);
+	virtual Joueur* getJoueurById(int id);
 	
-	TableJeu& getTable() {
+	virtual TableJeu& getTable() {
 		return *table;
 	}	
 
-	bool CompareCarte(const unique_ptr<Carte>& carte1, const unique_ptr<Carte>& carte2);
+	virtual bool CompareCarte(const unique_ptr<Carte>& carte1, const unique_ptr<Carte>& carte2);
 };
 #endif

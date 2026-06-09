@@ -7,6 +7,7 @@
 #include "DameDePique.h"
 
 DameDePique::DameDePique() {
+	Jeu::setJeuCourant(this);
 }
 
 void DameDePique::creerPaquetJeu() {

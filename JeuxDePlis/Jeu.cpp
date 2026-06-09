@@ -7,6 +7,7 @@
 #include "Jeu.h"
 #include "PaquetCarte.h"
 
+Jeu* Jeu::jeuCourant = nullptr;
 		
 Jeu::Jeu() {};
 
