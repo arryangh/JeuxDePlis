@@ -6,6 +6,7 @@
 #include "Team.h"
 #include "DameDePique.h"
 
+
 DameDePique::DameDePique() {
 	Jeu::setJeuCourant(this);
 }
@@ -88,23 +89,26 @@ list<int> DameDePique::carteValide(const PaquetCarte& main, const PaquetCarte& p
 		}
 	}
 	else {
-		string firstCouleur = plis.getListeCartePaquet()[0]->getCouleur();
-		for (size_t i = 0; i < main.PaquetSize(); i++)
+		Carte firstCartePlis = *plis.getListeCartePaquet()[0];
+		if (firstCartePlis.checkCouleurPlisDansMain(main))
 		{
-			if (main.getListeCartePaquet()[i]->getCouleur() == firstCouleur) {
-				carteValide.push_back(i);
+			string firstCouleur = plis.getListeCartePaquet()[0]->getCouleur();
+			for (size_t i = 0; i < main.PaquetSize(); i++)
+			{
+				if (main.getListeCartePaquet()[i]->getCouleur() == firstCouleur) {
+					carteValide.push_back(i);
+				}
 			}
 		}
-		if (carteValide.empty()) {
+		if (!firstCartePlis.checkCouleurPlisDansMain(main)) {
 			for (size_t i = 0; i < main.PaquetSize(); i++)
 			{
 				carteValide.push_back(i);
 			}
 		}
-		return carteValide;
 	}
+	return carteValide;
 }
-
 const int DameDePique::playFirst() {
 	TableJeu* table = &getTable();
 	if (getJoueurById(0)->getMain().PaquetSize() == 13) {
