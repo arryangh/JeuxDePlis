@@ -25,7 +25,7 @@ public:
 
 	void setPlis(PaquetCarte paquet_carte);
 
-	PaquetCarte getPlis();
+	PaquetCarte& getPlis();
 
 	void setIdPremierJoueur(int id);
 

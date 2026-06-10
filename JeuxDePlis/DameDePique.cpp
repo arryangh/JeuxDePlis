@@ -33,10 +33,6 @@ void DameDePique::distribuer() {
 
 }
 
-void DameDePique::jouerCarte() {
-
-}
-
 bool DameDePique::checkCoeurBrise() { 
 	return Coeur_Brise; 
 }

@@ -42,3 +42,7 @@ bool Carte::checkCouleurPlisDansMain(const PaquetCarte& main)
     }
     return false;
 }
+
+string Carte::toString() const{
+    return valeur + couleur;
+}

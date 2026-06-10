@@ -49,8 +49,6 @@ public:
 
 	virtual void distribuer() = 0;
 
-	virtual void jouerCarte() = 0;
-
 	virtual void checkWin() = 0;
 
 	virtual list<int> carteValide(const PaquetCarte& main, const PaquetCarte& plis) = 0;

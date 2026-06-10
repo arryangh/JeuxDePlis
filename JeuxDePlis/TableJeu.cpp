@@ -13,7 +13,7 @@ void TableJeu::setPlis(PaquetCarte paquet_carte) {
 	TableJeu::plis = paquet_carte;
 }
 
-PaquetCarte TableJeu::getPlis(){
+PaquetCarte& TableJeu::getPlis(){
 	return TableJeu::plis;
 }
 

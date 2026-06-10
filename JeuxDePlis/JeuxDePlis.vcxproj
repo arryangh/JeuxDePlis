@@ -132,6 +132,8 @@
     <ClCompile Include="Humain.cpp" />
     <ClCompile Include="IA.cpp" />
     <ClCompile Include="Jeu.cpp" />
+    <ClCompile Include="JeuManager.cpp" />
+    <ClCompile Include="JeuManager.h" />
     <ClCompile Include="Joueur.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PaquetCarte.cpp" />

@@ -45,6 +45,12 @@
     <ClCompile Include="TableJeu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="JeuManager.h">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="JeuManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Carte.h">

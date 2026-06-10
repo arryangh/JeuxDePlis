@@ -25,12 +25,10 @@ public :
 
 	DameDePique();
 
-	static DameDePique* getInstance() {
-		if (dameDePique == nullptr) {
-			dameDePique = new DameDePique();
-		}
-		return dameDePique;
+	static Jeu* getInstance() {
+		return getJeuCourant();
 	}
+
 	void creerPaquetJeu();
 
 	void distribuer() override;

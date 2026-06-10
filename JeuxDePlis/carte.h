@@ -29,5 +29,7 @@ public:
 
 	bool checkCouleurPlisDansMain( const PaquetCarte& main);
 
+	string toString() const;
+
 };
 #endif
