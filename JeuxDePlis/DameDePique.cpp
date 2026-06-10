@@ -36,7 +36,9 @@ void DameDePique::jouerCarte() {
 
 }
 
-
+bool DameDePique::checkCoeurBrise() { 
+	return Coeur_Brise; 
+}
 
 void DameDePique::checkWin() {
 	for (size_t i = 0; i < getNbEquipe(); i++) {
@@ -75,9 +77,32 @@ int DameDePique::gagnantPlis() {
 	return 0;
 }
 list<int> DameDePique::carteValide(const PaquetCarte& main, const PaquetCarte& plis) {
-	// Implementation for validating a card
-	return true;
-	TableJeu* table = &getTable();
+	list<int> carteValide;
+	if (plis.PaquetSize() == 0) {
+		if (checkCoeurBrise()) {
+			int index = 0;
+			for (const auto& carte : main.getListeCartePaquet()) {
+				carteValide.push_back(index);
+				index++;
+			}
+		}
+	}
+	else {
+		string firstCouleur = plis.getListeCartePaquet()[0]->getCouleur();
+		for (size_t i = 0; i < main.PaquetSize(); i++)
+		{
+			if (main.getListeCartePaquet()[i]->getCouleur() == firstCouleur) {
+				carteValide.push_back(i);
+			}
+		}
+		if (carteValide.empty()) {
+			for (size_t i = 0; i < main.PaquetSize(); i++)
+			{
+				carteValide.push_back(i);
+			}
+		}
+		return carteValide;
+	}
 }
 
 const int DameDePique::playFirst() {

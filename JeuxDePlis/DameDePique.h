@@ -37,7 +37,6 @@ public :
 
 	void jouerCarte() override;
 
-
 	void checkWin() override;
 
 	int gagnantPlis();
@@ -49,6 +48,9 @@ public :
 	const int playNext() ;
 
 	void compterPoint() override;
+
+	bool checkCoeurBrise();
+
 
 };
 #endif

@@ -46,7 +46,7 @@ void PaquetCarte::deleteCard()
 	}
 }
 
-vector<unique_ptr<Carte>> PaquetCarte::getListeCartePaquet()
+const std::vector<std::unique_ptr<Carte>>& PaquetCarte::getListeCartePaquet()const
 {
 	return listeCartePaquet;
 }

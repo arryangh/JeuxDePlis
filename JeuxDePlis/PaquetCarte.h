@@ -29,7 +29,7 @@ public:
 
 	void deleteCard();
 
-	vector<unique_ptr<Carte>> getListeCartePaquet();
+	const std::vector<std::unique_ptr<Carte>>& getListeCartePaquet() const;
 
 	void MelangerPaquet();
 
