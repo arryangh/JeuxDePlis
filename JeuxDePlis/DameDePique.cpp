@@ -30,11 +30,6 @@ void DameDePique::distribuer() {
 		getPaquetJeu().giveCard(0, getJoueurById(i)->getMain());
 		i = (i + 1) % getNbJoueurs();
 	}
-
-}
-
-void DameDePique::jouerCarte() {
-
 }
 
 bool DameDePique::checkCoeurBrise() { 
@@ -57,7 +52,6 @@ int DameDePique::gagnantPlis() {
 	int idfirstjoueur = table->getIdPremierJoueur();
 	int idgagnant = idfirstjoueur;
 	string valeurgagnant = "null";
-	// on parcourt les cartes jouées pour trouver la première couleur jouée	
 	for (size_t i = 0; i < getNbJoueurs(); i++)
 	{
 		const auto& carte = plis.getListeCartePaquet()[i];
