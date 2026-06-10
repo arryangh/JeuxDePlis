@@ -35,10 +35,10 @@ int Jeu::getNbJoueurs(){
 }
 
 void Jeu::setPaquetJeu(PaquetCarte newPaquetJeu){
-	paquetJeu = newPaquetJeu;
+	paquetJeu = move(newPaquetJeu);
 }
 
-PaquetCarte Jeu::getPaquetJeu()
+PaquetCarte& Jeu::getPaquetJeu()
 {
 	return paquetJeu;
 }
@@ -85,9 +85,13 @@ Joueur* Jeu::getJoueurById(int id) {
 	return nullptr; // Si aucun joueur avec cet ID n'est trouvé
 }
 
+TableJeu& Jeu::getTable() {
+	return *table;
+}
+
 bool Jeu::CompareCarte(const unique_ptr<Carte>& carte1, const unique_ptr<Carte>& carte2) {
-	int hauteurCarte1 = distance(ordreCarte.begin(), find(ordreCarte.begin(), ordreCarte.end(), carte1->getValeur()));
-	int hauteurCarte2 = distance(ordreCarte.begin(), find(ordreCarte.begin(), ordreCarte.end(), carte2->getValeur()));
+	int hauteurCarte1 = (int)distance(ordreCarte.begin(), find(ordreCarte.begin(), ordreCarte.end(), carte1->getValeur()));
+	int hauteurCarte2 = (int)distance(ordreCarte.begin(), find(ordreCarte.begin(), ordreCarte.end(), carte2->getValeur()));
 
 	return hauteurCarte1 > hauteurCarte2;
 }

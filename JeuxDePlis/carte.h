@@ -7,6 +7,8 @@
 #include <iostream>
 #include <assert.h>
 
+class PaquetCarte;
+
 using namespace std;
 class Carte
 {

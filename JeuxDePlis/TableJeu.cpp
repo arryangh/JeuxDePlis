@@ -9,8 +9,8 @@
 TableJeu::TableJeu() {};
 
 
-void TableJeu::setPlis(PaquetCarte paquet_carte) {
-	TableJeu::plis = paquet_carte;
+void TableJeu::setPlis(PaquetCarte& paquet_carte) {
+	plis = move(paquet_carte);
 }
 
 PaquetCarte& TableJeu::getPlis(){

@@ -21,6 +21,12 @@ public:
 	
 	PaquetCarte();
 
+	PaquetCarte(const PaquetCarte&) = delete;
+	PaquetCarte& operator=(const PaquetCarte&) = delete;
+	
+	PaquetCarte(PaquetCarte&&) = default;
+	PaquetCarte& operator=(PaquetCarte&&) = default;
+
 	void afficherPaquet();
 
 	void addCarte(std::unique_ptr<Carte> carte);

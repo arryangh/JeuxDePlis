@@ -1,2 +1,7 @@
-﻿  main.cpp
-  JeuxDePlis.vcxproj -> D:\MincrosoftVisualCodeProjects\JeuxDePlis\x64\Debug\JeuxDePlis.exe
+﻿  Analyse des sources à la recherche des dépendances de module...
+  Carte.cpp
+  Joueur.cpp
+  main.cpp
+  Team.cpp
+  Génération de code en cours...
+  JeuxDePlis.vcxproj -> C:\Users\Anaelle\Documents\Anaëlle\3A\S6\Projet C++ Modern\JeuxDePlis\x64\Debug\JeuxDePlis.exe

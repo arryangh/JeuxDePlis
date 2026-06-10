@@ -23,7 +23,7 @@ public:
 	
 	TableJeu();
 
-	void setPlis(PaquetCarte paquet_carte);
+	void setPlis(PaquetCarte& paquet_carte);
 
 	PaquetCarte& getPlis();
 

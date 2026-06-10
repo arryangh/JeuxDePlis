@@ -17,9 +17,10 @@ using namespace std;
 
 
 int main() {
-    int choix = ChoixDuJeu();
+    JeuManager manager = JeuManager();
+    int choix = manager.ChoixDuJeu();
 
-    Jeu* jeu = InstancierJeuChoisi(choix);
+    Jeu* jeu = manager.InstancierJeuChoisi(choix);
 
     if (jeu != nullptr) {
         //jeu->jouer(); // boucle principal du jeu

@@ -11,7 +11,8 @@
 #include "Carte.h"
 #include "Joueur.h"
 #include "Team.h"
-#include "TableJeu.h"
+
+class TableJeu;
 
 using namespace std;
 
@@ -69,7 +70,7 @@ public:
 
 	virtual void setPaquetJeu(PaquetCarte paquetJeu);
 
-	virtual PaquetCarte getPaquetJeu();
+	virtual PaquetCarte& getPaquetJeu();
 
 	virtual void setNbManche(int nbManche);
 
@@ -90,9 +91,7 @@ public:
 	}
 	virtual Joueur* getJoueurById(int id);
 	
-	virtual TableJeu& getTable() {
-		return *table;
-	}	
+	virtual TableJeu& getTable();
 
 	virtual bool CompareCarte(const unique_ptr<Carte>& carte1, const unique_ptr<Carte>& carte2);
 };

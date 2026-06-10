@@ -6,9 +6,9 @@
 
 #include "Humain.h"
 #include "Jeu.h"
+#include "TableJeu.h" 
 
 
-#include "Humain.h"
 #include <iostream>
 
 void Humain::jouerCoup() {

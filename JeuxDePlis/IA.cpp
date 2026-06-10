@@ -7,6 +7,7 @@
 
 #include "IA.h"
 #include "Jeu.h"
+#include "TableJeu.h" 
 
 void IA::jouerCoup() {
 	Jeu* jeuCourant = Jeu::getJeuCourant();
@@ -16,7 +17,7 @@ void IA::jouerCoup() {
 
 	vector<int> jouables(cartesJouables.begin(), cartesJouables.end());
 
-	int indexListe = randomIndex(jouables.size());
+	int indexListe = randomIndex((int)jouables.size());
 
 	int indexCarteMain = jouables[indexListe];
 

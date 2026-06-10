@@ -48,7 +48,7 @@ public:
 
     void setJoueurs(vector<shared_ptr<Joueur>> joueurs);
 
-    vector<shared_ptr<Joueur>> getJoueurs();
+    const vector<shared_ptr<Joueur>>& getJoueurs() const;
 };
 
 #endif

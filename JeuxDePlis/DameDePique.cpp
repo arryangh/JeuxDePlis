@@ -5,10 +5,12 @@
 #include <assert.h>
 #include "Team.h"
 #include "DameDePique.h"
+#include "TableJeu.h"
 
 
 DameDePique::DameDePique() {
 	Jeu::setJeuCourant(this);
+	Coeur_Brise = false;
 }
 
 void DameDePique::creerPaquetJeu() {
@@ -48,12 +50,12 @@ void DameDePique::checkWin() {
 
 int DameDePique::gagnantPlis() {
 	string firstCouleur = "null";
-	TableJeu* table = &getTable();
-	PaquetCarte plis = table->getPlis();
-	int idfirstjoueur = table->getIdPremierJoueur();
-	int idgagnant = idfirstjoueur;
+	TableJeu& table = getTable();
+	PaquetCarte& plis = table.getPlis();
+	int idFirstJoueur = table.getIdPremierJoueur();
+	int idgagnant = idFirstJoueur;
 	string valeurgagnant = "null";
-	for (size_t i = 0; i < getNbJoueurs(); i++)
+	for (int i = 0; i < getNbJoueurs(); i++)
 	{
 		const auto& carte = plis.getListeCartePaquet()[i];
 		if ( firstCouleur == "null") {
@@ -69,7 +71,7 @@ int DameDePique::gagnantPlis() {
 
 
 	}
-	table->setIdPremierJoueur(idgagnant);
+	table.setIdPremierJoueur(idgagnant);
 	return 0;
 }
 list<int> DameDePique::carteValide(const PaquetCarte& main, const PaquetCarte& plis) {
@@ -88,7 +90,7 @@ list<int> DameDePique::carteValide(const PaquetCarte& main, const PaquetCarte& p
 		if (firstCartePlis.checkCouleurPlisDansMain(main))
 		{
 			string firstCouleur = plis.getListeCartePaquet()[0]->getCouleur();
-			for (size_t i = 0; i < main.PaquetSize(); i++)
+			for (int i = 0; i < main.PaquetSize(); i++)
 			{
 				if (main.getListeCartePaquet()[i]->getCouleur() == firstCouleur) {
 					carteValide.push_back(i);
@@ -96,7 +98,7 @@ list<int> DameDePique::carteValide(const PaquetCarte& main, const PaquetCarte& p
 			}
 		}
 		if (!firstCartePlis.checkCouleurPlisDansMain(main)) {
-			for (size_t i = 0; i < main.PaquetSize(); i++)
+			for (int i = 0; i < main.PaquetSize(); i++)
 			{
 				carteValide.push_back(i);
 			}
@@ -107,7 +109,7 @@ list<int> DameDePique::carteValide(const PaquetCarte& main, const PaquetCarte& p
 const int DameDePique::playFirst() {
 	TableJeu* table = &getTable();
 	if (getJoueurById(0)->getMain().PaquetSize() == 13) {
-		for (size_t i=0; i<getNbJoueurs(); i++)
+		for (int i=0; i<getNbJoueurs(); i++)
 		{
 			const auto& cartes = getJoueurById(i)->getMain().getListeCartePaquet();
 
@@ -124,9 +126,10 @@ const int DameDePique::playFirst() {
 
 	}
 	else {
-		int premierjoueur = table->getIdPremierJoueur();
-		return ( premierjoueur) ;
+		int premierJoueur = table->getIdPremierJoueur();
+		return premierJoueur;
 	}
+	return 0;
 }
 const int DameDePique::playNext() {
 	int idgagnant = gagnantPlis();
@@ -134,7 +137,7 @@ const int DameDePique::playNext() {
 }
 
 void DameDePique::compterPoint() {
-	for (size_t i = 0; i < getNbJoueurs(); i++)
+	for (int i = 0; i < getNbJoueurs(); i++)
 	{
 		const auto& plis = getTeam()[i]->getPlisGagne();
 		int pointEquipe = 0;
@@ -158,7 +161,7 @@ void DameDePique::compterPoint() {
 		}
 		if (pointEquipe == 26) {
 			pointEquipe = 0;
-			for (size_t j = 0; j < getNbEquipe(); j++)
+			for (int j = 0; j < getNbEquipe(); j++)
 			{
 				if (j != i) {
 					getTeam()[j]->setNbPoint(

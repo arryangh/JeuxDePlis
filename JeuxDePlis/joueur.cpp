@@ -18,7 +18,7 @@ char Joueur::getNom (){
 }
 
 void Joueur::setMain(PaquetCarte carte){
-	this->main = carte;
+	this->main = move(carte);
 }
 
 PaquetCarte& Joueur::getMain(){
