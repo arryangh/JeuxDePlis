@@ -21,9 +21,9 @@ private:
 
 	bool Coeur_Brise;
 
-	DameDePique();
-
 public :
+
+	DameDePique();
 
 	static DameDePique* getInstance() {
 		if (dameDePique == nullptr) {
@@ -34,8 +34,6 @@ public :
 	void creerPaquetJeu();
 
 	void distribuer() override;
-
-	void jouerCarte() override;
 
 	void checkWin() override;
 
