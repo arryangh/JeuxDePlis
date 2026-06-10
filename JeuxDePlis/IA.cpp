@@ -5,10 +5,20 @@
 #include <assert.h>
 
 #include "IA.h"
+#include "Jeu.h"
 
 void IA::jouerCoup() {
-	//give carte pour carte dans plis
+	Jeu* jeuCourant = Jeu::getJeuCourant();
+	TableJeu table = jeuCourant->getTable();
+	PaquetCarte plis = table.getPlis();
+	vector<unique_ptr<Carte>> cartesJouables;
+	for (const auto& carte : plis.getListeCartePaquet()) {
+
+	}
+
 
 }
+
+
 
 

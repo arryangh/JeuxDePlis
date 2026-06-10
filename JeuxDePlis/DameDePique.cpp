@@ -7,6 +7,7 @@
 #include "DameDePique.h"
 
 DameDePique::DameDePique() {
+	Jeu::setJeuCourant(this);
 }
 
 void DameDePique::creerPaquetJeu() {
@@ -73,7 +74,11 @@ int DameDePique::gagnantPlis() {
 	table->setIdPremierJoueur(idgagnant);
 	return 0;
 }
-bool DameDePique::checkPlis() {}
+list<int> DameDePique::carteValide(const PaquetCarte& main, const PaquetCarte& plis) {
+	// Implementation for validating a card
+	return true;
+	TableJeu* table = &getTable();
+}
 
 const int DameDePique::playFirst() {
 	TableJeu* table = &getTable();

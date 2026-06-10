@@ -42,7 +42,7 @@ public :
 
 	int gagnantPlis();
 
-	bool checkPlis() override;//carte jouable 
+	list<int> carteValide(const PaquetCarte& main, const PaquetCarte& plis) override;//carte jouable 
 
 	const int playFirst() override;
 
