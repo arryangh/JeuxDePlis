@@ -8,5 +8,7 @@ public :
 
 	Jeu* InstancierJeuChoisi(int choix);
 
-	void ChoixJoueurs();
+	void ConfigurerJeu(int nbJoueurs, int nbManches);
+
+	void ConfigurerJoueurs();
 };

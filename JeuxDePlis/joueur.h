@@ -13,7 +13,7 @@
 class Joueur
 {
 private:
-	char nom ;
+	string nom ;
 
 	PaquetCarte main;
 	
@@ -24,13 +24,15 @@ public:
 
 	virtual void jouerCoup() = 0;
 
-	void setNom(char nom);
+	void setNom(string nom);
 
 	char getNom ();
 
 	void setMain(PaquetCarte carte);
 
 	PaquetCarte& getMain();
+
+	void setIdJoueur(int idJoueur);
 
 	int getIdjoueur() const;
 
