@@ -24,15 +24,3 @@ void TableJeu::setIdPremierJoueur(int id) {
 int TableJeu::getIdPremierJoueur() {
 	return TableJeu::idpremierJoueur;
 }	
-
-void TableJeu::attribuerPlis(Team& team) {
-    {
-     
-        // 1. Créer un nouveau paquet dans l'équipe, en déplaçant tout le pli
-        team.getPlisGagnes().push_back(
-            std::make_unique<PaquetCarte>(std::move(plis))
-        );
-
-        // 2. Réinitialiser le pli (important)
-        plis = PaquetCarte{};
-}

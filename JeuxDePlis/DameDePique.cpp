@@ -10,7 +10,10 @@
 
 DameDePique::DameDePique() {
 	Jeu::setJeuCourant(this);
+	nbJoueurs = 4;
+	nbManche = 0;
 	Coeur_Brise = false;
+	pointsGagnant = 100;
 }
 
 void DameDePique::creerPaquetJeu() {
@@ -154,7 +157,7 @@ void DameDePique::compterPoint() {
 		int pointEquipe = 0;
 		for (const auto& pli : plis)
 		{
-			const auto& cartes = pli->getListeCartePaquet();
+			const auto& cartes = pli.getListeCartePaquet();
 
 			for (const auto& carte : cartes)
 			{
@@ -206,12 +209,14 @@ void DameDePique::jouer() {
 					}
 				}
 			}
-			while (table->getPlis().PaquetSize() > 0) {
-				PaquetCarte& plisGagne = table->getPlis();
-				equipeGagnante->addPlisGagne(plisGagne);
-				const PaquetCarte& newplis = PaquetCarte();
-				table->setPlis(newplis);
-			}
+			PaquetCarte& plisGagne = table->getPlis();
+			equipeGagnante->addPlisGagne(plisGagne);
+		
 		}
+		compterPoint();
+		for (int i = 0; i < getNbEquipe(); i++) {
+			getTeam()[i]->clearPlis();
+		}
+		creerPaquetJeu();
 	}
 }
