@@ -24,3 +24,4 @@ void TableJeu::setIdPremierJoueur(int id) {
 int TableJeu::getIdPremierJoueur() {
 	return TableJeu::idpremierJoueur;
 }	
+

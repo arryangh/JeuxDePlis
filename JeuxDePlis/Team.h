@@ -28,7 +28,7 @@ public:
 
     void clearPlis();
 
-    void addPlisGagne(PaquetCarte  plis);
+    void addPlisGagne(PaquetCarte&  plis);
 
     // on renvoie l'adresse du vecteur de pointeurs (pour éviter de le recopier inutillement)
     const vector<PaquetCarte>& getPlisGagne() const;

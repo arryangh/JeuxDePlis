@@ -17,7 +17,7 @@ de vector à la fonction. on utilise  move car unique_ptr ne peut pas être reco
 à la fin de l'appel, le unique_ptr de l'appelant reste à null (vector<unique_ptr<PaquetCarte>> plisGagne)
 */
 void Team::addPlisGagne(PaquetCarte&  plis) {
-    this->plisGagne.push_back(plis);
+    this->plisGagne.push_back(move(plis));
 }
 
 
