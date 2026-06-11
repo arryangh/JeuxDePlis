@@ -84,6 +84,16 @@ list<int> DameDePique::carteValide(const PaquetCarte& main, const PaquetCarte& p
 				index++;
 			}
 		}
+		else {
+			int index = 0;
+			for (const auto& carte : main.getListeCartePaquet()) {
+				if (carte->getCouleur() != "Coeur") {
+					carteValide.push_back(index);
+				}
+				index++;
+			
+			}
+		}
 	}
 	else {
 		Carte firstCartePlis = *plis.getListeCartePaquet()[0];
