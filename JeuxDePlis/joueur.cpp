@@ -13,7 +13,7 @@ void Joueur::setNom(string nom){
 	this->nom = nom;
 }
 
-char Joueur::getNom (){
+string Joueur::getNom (){
 	return this->nom;
 }
 

@@ -23,6 +23,8 @@ int main() {
     Jeu* jeu = manager.InstancierJeuChoisi(choix);
 
     if (jeu != nullptr) {
+        manager.ConfigurerJeu(jeu->getNbJoueurs(), jeu->getNbManche());
+        manager.ConfigurerJoueurs();
         //jeu->jouer(); // boucle principal du jeu
         delete jeu;
     }

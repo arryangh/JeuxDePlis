@@ -64,7 +64,7 @@ Jeu* JeuManager::InstancierJeuChoisi(int choix) {
     }
 }
 
-void JeuManager::ConfigurerJeu(int nbJoueurs, int nbManches) {
+void JeuManager::ConfigurerJeu(int nbJoueurs, int nbManches){
     Jeu* jeuCourant = Jeu::getJeuCourant();
     jeuCourant->setNbJoueurs(nbJoueurs);
     jeuCourant->setNbManche(nbManches);
