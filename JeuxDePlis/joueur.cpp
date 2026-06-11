@@ -9,7 +9,7 @@
 
 Joueur::Joueur() {};
 
-void Joueur::setNom(char nom){
+void Joueur::setNom(string nom){
 	this->nom = nom;
 }
 
@@ -23,6 +23,10 @@ void Joueur::setMain(PaquetCarte carte){
 
 PaquetCarte& Joueur::getMain(){
 	return this->main;
+}
+
+void Joueur::setIdJoueur(int idJoueur) {
+	this->idjoueur = idJoueur;
 }
 
 int Joueur::getIdjoueur() const {
