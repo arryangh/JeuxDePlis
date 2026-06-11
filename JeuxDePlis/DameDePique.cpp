@@ -186,5 +186,32 @@ void DameDePique::compterPoint() {
 }
 
 void DameDePique::jouer() {
-
+	TableJeu* table = &getTable();
+	creerPaquetJeu();
+	while (!checkWin()) {
+		distribuer();
+		int nbManche = getNbManche();
+		while (getJoueurById(0)->getMain().PaquetSize() > 0) {
+			for (int i = 0; i < getNbJoueurs(); i++) {
+				getJoueurById(0)->jouerCoup();
+			}
+			int idgagnantplis=gagnantPlis();
+			Team* equipeGagnante = nullptr;
+			for (int i = 0; i < getNbEquipe(); i++) {
+				const auto& joueursEquipe = getTeam()[i]->getJoueurs();
+				for (const auto& joueur : joueursEquipe) {
+					if (joueur->getIdjoueur() == idgagnantplis) {
+						equipeGagnante = getTeam()[i];
+						break;
+					}
+				}
+			}
+			while (table->getPlis().PaquetSize() > 0) {
+				PaquetCarte& plisGagne = table->getPlis();
+				equipeGagnante->addPlisGagne(plisGagne);
+				const PaquetCarte& newplis = PaquetCarte();
+				table->setPlis(newplis);
+			}
+		}
+	}
 }

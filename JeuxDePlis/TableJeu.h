@@ -30,5 +30,6 @@ public:
 	void setIdPremierJoueur(int id);
 
 	int getIdPremierJoueur();
+
 };
 #endif

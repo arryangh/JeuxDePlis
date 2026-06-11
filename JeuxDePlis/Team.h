@@ -15,7 +15,7 @@ using namespace std;
 class Team
 {
 private:
-    vector<unique_ptr<PaquetCarte>> plisGagne;
+    vector<PaquetCarte> plisGagne;
     int pointManche;
     int nbPoint;
     string teamNom;
@@ -28,10 +28,10 @@ public:
 
     void clearPlis();
 
-    void setPlisGagne(unique_ptr<PaquetCarte> plis);
+    void addPlisGagne(PaquetCarte  plis);
 
     // on renvoie l'adresse du vecteur de pointeurs (pour éviter de le recopier inutillement)
-    const vector<unique_ptr<PaquetCarte>>& getPlisGagne() const;
+    const vector<PaquetCarte>& getPlisGagne() const;
 
     void setPointManche(int nb);
 
@@ -49,6 +49,8 @@ public:
     void setJoueurs(vector<shared_ptr<Joueur>> joueurs);
 
     const vector<shared_ptr<Joueur>>& getJoueurs() const;
+
+   
 };
 
 #endif

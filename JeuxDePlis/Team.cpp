@@ -16,15 +16,15 @@ la fonction prend un unique_ptr en paramètre.l'objet appelant de la fonction tr
 de vector à la fonction. on utilise  move car unique_ptr ne peut pas être recopié, mais seulement déplacé.
 à la fin de l'appel, le unique_ptr de l'appelant reste à null (vector<unique_ptr<PaquetCarte>> plisGagne)
 */
-void Team::setPlisGagne(unique_ptr<PaquetCarte> plis) {
-    this->plisGagne.push_back(move(plis));
+void Team::addPlisGagne(PaquetCarte&  plis) {
+    this->plisGagne.push_back(plis);
 }
 
 
 /*
 La fonction retourne un pointeur brut sans transferer sa propriété pour consulter le vector "plisGagne"
 */
-const vector<unique_ptr<PaquetCarte>>& Team::getPlisGagne() const {
+const vector<PaquetCarte>& Team::getPlisGagne() const {
     return this->plisGagne;
 }
 
