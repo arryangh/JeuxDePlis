@@ -12,30 +12,30 @@ Carte::Carte() {};
 
 void Carte::setValeur(string newvaleur)
 {
-	valeur = newvaleur;
+    valeur = newvaleur;
 }
 
-string Carte::getValeur()
+string Carte::getValeur() const
 {
-	return valeur;
+    return valeur;
 }
 
-void Carte::setCouleur( string newcouleur)
+void Carte::setCouleur(string newcouleur)
 {
-	couleur = newcouleur;
+    couleur = newcouleur;
 }
 
-string  Carte::getCouleur()
+string  Carte::getCouleur() const
 {
-	return couleur;
+    return couleur;
 }
 
 bool Carte::checkCouleurPlisDansMain(const PaquetCarte& main)
 {
     Jeu* jeuCourant = Jeu::getJeuCourant();
     TableJeu& table = jeuCourant->getTable();
-	PaquetCarte& plis = table.getPlis();
-	vector<unique_ptr<Carte>>& listeCartePlis = const_cast<vector<unique_ptr<Carte>>&>(plis.getListeCartePaquet());
+    PaquetCarte& plis = table.getPlis();
+    vector<unique_ptr<Carte>>& listeCartePlis = const_cast<vector<unique_ptr<Carte>>&>(plis.getListeCartePaquet());
     for (const auto& carte : main.getListeCartePaquet()) {
         if (carte->getCouleur() == listeCartePlis[0]->getCouleur()) {
             return true;
@@ -44,6 +44,6 @@ bool Carte::checkCouleurPlisDansMain(const PaquetCarte& main)
     return false;
 }
 
-string Carte::toString() const{
+string Carte::toString() const {
     return valeur + couleur;
 }

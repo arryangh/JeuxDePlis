@@ -80,8 +80,17 @@ TableJeu& Jeu::getTable() {
 }
 
 bool Jeu::CompareCarte(const unique_ptr<Carte>& carte1, const unique_ptr<Carte>& carte2) {
-	int hauteurCarte1 = (int)distance(ordreCarte.begin(), find(ordreCarte.begin(), ordreCarte.end(), carte1->getValeur()));
-	int hauteurCarte2 = (int)distance(ordreCarte.begin(), find(ordreCarte.begin(), ordreCarte.end(), carte2->getValeur()));
+	Jeu* jeuCourant = this->getJeuCourant();
+	int hauteurCarte1 = (int)distance(jeuCourant->ordreCarte.begin(), find(jeuCourant->ordreCarte.begin(), jeuCourant->ordreCarte.end(), carte1->getValeur()));
+	int hauteurCarte2 = (int)distance(jeuCourant->ordreCarte.begin(), find(jeuCourant->ordreCarte.begin(), jeuCourant->ordreCarte.end(), carte2->getValeur()));
 
 	return hauteurCarte1 > hauteurCarte2;
+}
+
+void Jeu::addJoueur(shared_ptr<Joueur> joueur) {
+	joueurs.push_back(move(joueur));
+}
+
+const vector<shared_ptr<Joueur>>& Jeu::getJoueurs() const {
+	return joueurs;
 }

@@ -6,13 +6,9 @@
 
 #include "Humain.h"
 #include "Jeu.h"
-#include "TableJeu.h" 
-
-
-#include <iostream>
+#include "TableJeu.h"
 
 void Humain::jouerCoup() {
-
     Jeu* jeuCourant = Jeu::getJeuCourant();
     TableJeu& table = jeuCourant->getTable();
     PaquetCarte& plis = table.getPlis();
@@ -20,36 +16,48 @@ void Humain::jouerCoup() {
 
     vector<int> jouables(cartesJouables.begin(), cartesJouables.end());
 
+    // Afficher les cartes déjà posées sur la table
+    if (plis.PaquetSize() > 0) {
+        cout << "Sur la table : ";
+        for (size_t i = 0; i < plis.PaquetSize(); i++) {
+            const auto& c = plis.getListeCartePaquet()[i];
+            cout << c->getValeur() << " de " << c->getCouleur() << "  ";
+        }
+        cout << endl;
+    }
+    else {
+        cout << "Vous êtes le premier à jouer ce pli." << endl;
+    }
+
     afficherCartesJouables(jouables, getMain());
 
     int indexCarteMain = choisirCarte(jouables);
 
-    Carte& carteChoisie =
-        *getMain().getListeCartePaquet()[indexCarteMain];
+    // On copie les infos avant giveCard (la carte sera déplacée après)
+    string valeur = getMain().getListeCartePaquet()[indexCarteMain]->getValeur();
+    string couleur = getMain().getListeCartePaquet()[indexCarteMain]->getCouleur();
 
-    plis.giveCard(indexCarteMain, getMain());
+    getMain().giveCard(indexCarteMain, plis);
 
-    std::cout << "Carte jouee : " << carteChoisie.toString() << "\n";
+    cout << getNom() << " joue : " << valeur << " de " << couleur << endl;
 }
 
-void Humain::afficherCartesJouables( const std::vector<int>& jouables, const PaquetCarte& main){
-    std::cout << "Cartes jouables :\n";
-
-    for (int i = 0; i < jouables.size(); i++) {
-        const Carte& c = *main.getListeCartePaquet()[jouables[i]];
-        std::cout << i << " -> " << c.toString() << "\n";
+void Humain::afficherCartesJouables(const std::vector<int>& jouables, const PaquetCarte& main) {
+    std::cout << "[" << getNom() << "] Vos cartes jouables :" << endl;
+    for (int i = 0; i < (int)jouables.size(); i++) {
+        const auto& c = main.getListeCartePaquet()[jouables[i]];
+        std::cout << "  " << i << " -> " << c->getValeur() << " de " << c->getCouleur() << "\n";
     }
 }
 
 int Humain::choisirCarte(const vector<int>& cartesJouables) {
-    cout << "Cartes jouables:\n";
-
-    for (int i = 0; i < cartesJouables.size(); i++) {
-        cout << i << " -> " << cartesJouables[i] << "\n";
+    int choix = -1;
+    while (choix < 0 || choix >= (int)cartesJouables.size()) {
+        cout << "Votre choix (0-" << cartesJouables.size() - 1 << ") : ";
+        cin >> choix;
+        if (choix < 0 || choix >= (int)cartesJouables.size()) {
+            cout << "Choix invalide, réessayez." << endl;
+        }
     }
-
-    int choix;
-    cin >> choix;
-
     return cartesJouables[choix];
 }

@@ -23,13 +23,13 @@ public:
 
 	void setValeur(string valeur);
 
-	string getValeur();
+	string getValeur() const;
 
 	void setCouleur(string couleur);
 
-	string getCouleur();
+	string getCouleur() const;
 
-	bool checkCouleurPlisDansMain( const PaquetCarte& main);
+	bool checkCouleurPlisDansMain(const PaquetCarte& main);
 
 	string toString() const;
 

@@ -10,6 +10,7 @@ void JeuManager::afficherText(string s) {
 
 int JeuManager::ChoixDuJeu() {
     bool inBoucle = true;
+    int choixJeu;
     int choix;
 
 
@@ -21,9 +22,9 @@ int JeuManager::ChoixDuJeu() {
         afficherText("3: Jeu 3");
 
         cout << "Votre choix: ";
-        cin >> choix;
+        cin >> choixJeu;
 
-        switch (choix) {
+        switch (choixJeu) {
         case 1:
             afficherText("vous avez choisi le jeu \"1\"");
             break;
@@ -38,19 +39,20 @@ int JeuManager::ChoixDuJeu() {
             break;
         }
 
-        afficherText("Appuyez sur 0 pour quitter ou 1 pour continuer");
+        afficherText("Appuyez sur 1 pour quitter ou 0 pour continuer");
         cin >> choix;
         if (choix == 0) {
             inBoucle = false;
         }
     }
-    return choix; // forcement une valeur entier 1, 2, 3, ...
+    return choixJeu; // forcement une valeur entier 1, 2, 3, ...
 }
 
 
 Jeu* JeuManager::InstancierJeuChoisi(int choix) {
     switch (choix) {
     case 1:
+        cout <<"dame de pique instancier"<< endl;
         return new DameDePique();
 
     case 2:
@@ -81,21 +83,28 @@ void JeuManager::ConfigurerJoueurs() {
         cin >> choix;
         string nomIA;
         string nomHumain;
+        shared_ptr<Joueur> joueur;
+
         switch (choix) {
-        case 0:
-            IA * ia = new IA();
+        case 0: {
+            IA* ia = new IA();
             ia->setIdJoueur(indexNbJoueurs);
             afficherText("Comment voulez-vous appeler le joueur " + to_string(indexNbJoueurs + 1) + " ? ");
             cin >> nomIA;
+            joueur = shared_ptr<Joueur>(ia);
             ia->setNom(nomIA);
             break;
-        case 1:
-            Humain * ia = new Humain();
-            ia->setIdJoueur(indexNbJoueurs);
+        }
+        case 1: {
+            Humain* humain = new Humain();
+            humain->setIdJoueur(indexNbJoueurs);
             afficherText("Comment voulez-vous appeler le joueur " + to_string(indexNbJoueurs + 1) + " ? ");
             cin >> nomHumain;
-            ia->setNom(nomHumain);
+            humain->setNom(nomHumain);
+            joueur = shared_ptr<Joueur>(humain);
             break;
         }
+        }
+        jeuCourant->addJoueur(joueur);
     }
 }

@@ -15,8 +15,7 @@ class DameDePique : public Jeu
 {
 private:
 	static DameDePique* dameDePique;
-	 
-	list<string> ordreCarte = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "Valet", "Dame", "Roi", "As" };
+
 	list<string> Couleur = { "Pique", "Coeur", "Carreau", "Trèfle" };
 
 	bool Coeur_Brise;
@@ -47,7 +46,9 @@ public :
 
 	bool checkCoeurBrise();
 
-	void jouer();
+	void jouer() override;
+	
+	void configurerTeam() override;
 
 };
 #endif

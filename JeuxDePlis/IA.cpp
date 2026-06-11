@@ -21,7 +21,7 @@ void IA::jouerCoup() {
 
 	int indexCarteMain = jouables[indexListe];
 
-	plis.giveCard(indexCarteMain, getMain());
+	getMain().giveCard(indexCarteMain, plis);
 }
 
 int IA::randomIndex(int max) {

@@ -38,6 +38,8 @@ protected:
 
 	TableJeu* table;
 
+	vector<shared_ptr<Joueur>> joueurs;
+
 	static void setJeuCourant(Jeu* jeu) { jeuCourant = jeu; }
 
 public:
@@ -57,6 +59,8 @@ public:
 	virtual void compterPoint() = 0;
 
 	virtual void jouer() = 0;
+
+	virtual void configurerTeam() = 0;
 
 	virtual void setNbJoueurs(int newNb);
 
@@ -90,5 +94,9 @@ public:
 	virtual TableJeu& getTable();
 
 	virtual bool CompareCarte(const unique_ptr<Carte>& carte1, const unique_ptr<Carte>& carte2);
+
+	void addJoueur(shared_ptr<Joueur> joueur);
+
+	const vector<shared_ptr<Joueur>>& getJoueurs() const;
 };
 #endif
