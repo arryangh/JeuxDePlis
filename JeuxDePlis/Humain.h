@@ -11,8 +11,10 @@
 
 class Humain : public Joueur
 {
-	void jouerCoup() override;
-	void afficherCartesJouables(const std::vector<int>& jouables, const PaquetCarte& main);
 	int choisirCarte(const vector<int>& cartesJouables);
+
+	void afficherCartesJouables(const std::vector<int>& jouables, const PaquetCarte& main);
+	
+	void jouerCoup() override;
 };
 #endif

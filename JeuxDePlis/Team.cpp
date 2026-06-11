@@ -11,23 +11,18 @@ void Team::clearPlis() {
     this->plisGagne.clear();
 }
 
-/*
-la fonction prend un unique_ptr en paramètre.l'objet appelant de la fonction transfert la propriété de du pointeur 
-de vector à la fonction. on utilise  move car unique_ptr ne peut pas être recopié, mais seulement déplacé.
-à la fin de l'appel, le unique_ptr de l'appelant reste à null (vector<unique_ptr<PaquetCarte>> plisGagne)
-*/
+
 void Team::addPlisGagne(PaquetCarte&  plis) {
     this->plisGagne.push_back(move(plis));
 }
 
-
-/*
-La fonction retourne un pointeur brut sans transferer sa propriété pour consulter le vector "plisGagne"
-*/
-const vector<PaquetCarte>& Team::getPlisGagne() const {
-    return this->plisGagne;
+void Team::setTeamNom(const string& nom) {
+    this->teamNom = nom;
 }
 
+string Team::getTeamNom() {
+    return this->teamNom;
+}
 
 void Team::setPointManche(int nb) {
     this->pointManche = nb;
@@ -45,12 +40,11 @@ int Team::getNbPoint() {
     return this->nbPoint;
 }
 
-void Team::setTeamNom(const string& nom) {
-    this->teamNom = nom;
-}
-
-string Team::getTeamNom() {
-    return this->teamNom;
+/*
+La fonction retourne un pointeur brut sans transferer sa propriété pour consulter le vector "plisGagne"
+*/
+const vector<PaquetCarte>& Team::getPlisGagne() const {
+    return this->plisGagne;
 }
 
 /*

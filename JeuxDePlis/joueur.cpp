@@ -6,24 +6,7 @@
 
 #include "Joueur.h"
 
-
-Joueur::Joueur() {};
-
-void Joueur::setNom(string nom){
-	this->nom = nom;
-}
-
-string Joueur::getNom (){
-	return this->nom;
-}
-
-void Joueur::setMain(PaquetCarte carte){
-	this->main = move(carte);
-}
-
-PaquetCarte& Joueur::getMain(){
-	return this->main;
-}
+Joueur::Joueur() : idjoueur(0) {};
 
 void Joueur::setIdJoueur(int idJoueur) {
 	this->idjoueur = idJoueur;
@@ -31,4 +14,20 @@ void Joueur::setIdJoueur(int idJoueur) {
 
 int Joueur::getIdjoueur() const {
 	return idjoueur;
+}
+
+void Joueur::setNom(string nom) {
+	this->nom = nom;
+}
+
+string Joueur::getNom() {
+	return this->nom;
+}
+
+void Joueur::setMain(PaquetCarte carte) {
+	this->main = move(carte);
+}
+
+PaquetCarte& Joueur::getMain() {
+	return this->main;
 }

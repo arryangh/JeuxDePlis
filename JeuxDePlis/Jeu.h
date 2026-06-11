@@ -40,13 +40,19 @@ protected:
 
 	vector<shared_ptr<Joueur>> joueurs;
 
-	static void setJeuCourant(Jeu* jeu) { jeuCourant = jeu; }
+	static void setJeuCourant(Jeu* jeu);
 
 public:
 
 	Jeu();
 
-	static Jeu* getJeuCourant() { return jeuCourant; }
+	static Jeu* getJeuCourant();
+
+	virtual Joueur* getJoueurById(int id);
+
+	virtual bool CompareCarte(const unique_ptr<Carte>& carte1, const unique_ptr<Carte>& carte2);
+
+	void addJoueur(shared_ptr<Joueur> joueur);
 
 	virtual void distribuer() = 0;
 
@@ -56,17 +62,19 @@ public:
 
 	virtual const int playFirst() = 0; 
 
+	virtual const int playNext() = 0;
+
 	virtual void compterPoint() = 0;
+
+	virtual void configurerTeam() = 0;
 
 	virtual void jouer() = 0;
 
-	virtual void configurerTeam() = 0;
+	virtual size_t getNbEquipe();
 
 	virtual void setNbJoueurs(int newNb);
 
 	virtual int getNbJoueurs();
-
-	virtual size_t getNbEquipe();
 
 	virtual void setPaquetJeu(PaquetCarte paquetJeu);
 
@@ -86,16 +94,9 @@ public:
 
 	virtual void setTeam(vector<Team*> newTeam);
 
-	virtual const std::vector<Team*>& getTeam() const {
-		return team;
-	}
-	virtual Joueur* getJoueurById(int id);
-	
+	virtual const vector<Team*>& getTeam() const;
+
 	virtual TableJeu& getTable();
-
-	virtual bool CompareCarte(const unique_ptr<Carte>& carte1, const unique_ptr<Carte>& carte2);
-
-	void addJoueur(shared_ptr<Joueur> joueur);
 
 	const vector<shared_ptr<Joueur>>& getJoueurs() const;
 };

@@ -16,7 +16,6 @@ class PaquetCarte
 private:
 	vector<unique_ptr<Carte>> listeCartePaquet;
 
-
 public:
 	
 	PaquetCarte();
@@ -39,8 +38,6 @@ public:
 
 	void MelangerPaquet();
 
-	size_t PaquetSize() const { return listeCartePaquet.size();}
-
-
+	size_t PaquetSize() const;
 };
 #endif

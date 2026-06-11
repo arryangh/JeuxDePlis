@@ -6,14 +6,13 @@
 
 #include "TableJeu.h"
 
-TableJeu::TableJeu() {};
-
+TableJeu::TableJeu() : idpremierJoueur(0) {};
 
 void TableJeu::setPlis(PaquetCarte& paquet_carte) {
 	plis = move(paquet_carte);
 }
 
-PaquetCarte& TableJeu::getPlis(){
+PaquetCarte& TableJeu::getPlis() {
 	return TableJeu::plis;
 }
 
@@ -23,5 +22,4 @@ void TableJeu::setIdPremierJoueur(int id) {
 
 int TableJeu::getIdPremierJoueur() {
 	return TableJeu::idpremierJoueur;
-}	
-
+}

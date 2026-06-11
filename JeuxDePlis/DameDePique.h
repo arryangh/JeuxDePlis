@@ -20,35 +20,37 @@ private:
 
 	bool Coeur_Brise;
 
-public :
+public:
 
 	DameDePique();
-
-	static Jeu* getInstance() {
-		return getJeuCourant();
-	}
-
-	void creerPaquetJeu();
 
 	void distribuer() override;
 
 	bool checkWin() override;
 
-	int gagnantPlis();
-
 	list<int> carteValide(const PaquetCarte& main, const PaquetCarte& plis) override;//carte jouable 
 
 	const int playFirst() override;
 
-	const int playNext() ;
+	const int playNext() override;
 
 	void compterPoint() override;
 
-	bool checkCoeurBrise();
+	void configurerTeam() override;
 
 	void jouer() override;
-	
-	void configurerTeam() override;
+
+	static Jeu* getInstance();
+
+	void creerPaquetJeu();
+
+	int gagnantPlis();
+
+	bool checkCoeurBrise();
+
+	void afficherScores();
+
+	void afficherPliEnCours(int premierJoueur);
 
 };
 #endif

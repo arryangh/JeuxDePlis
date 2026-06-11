@@ -9,6 +9,11 @@
 #include "Jeu.h"
 #include "TableJeu.h" 
 
+int IA::randomIndex(int max) {
+	uniform_int_distribution<> dist(0, max - 1);
+	return dist(gen);
+}
+
 void IA::jouerCoup() {
 	Jeu* jeuCourant = Jeu::getJeuCourant();
 	TableJeu& table = jeuCourant->getTable();
@@ -24,10 +29,6 @@ void IA::jouerCoup() {
 	getMain().giveCard(indexCarteMain, plis);
 }
 
-int IA::randomIndex(int max) {
-	uniform_int_distribution<> dist(0, max - 1);
-	return dist(gen);
-}
 
 
 

@@ -1,3 +1,6 @@
+#ifndef JEUMANAGER_H
+#define JEUMANAGER_H
+
 #include "Jeu.h"
 
 class JeuManager {
@@ -12,3 +15,4 @@ public :
 
 	void ConfigurerJoueurs();
 };
+#endif

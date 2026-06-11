@@ -1,4 +1,3 @@
-// Team.h
 #ifndef TEAM_H
 #define TEAM_H
 
@@ -15,10 +14,10 @@ using namespace std;
 class Team
 {
 private:
-    vector<PaquetCarte> plisGagne;
+    string teamNom;
     int pointManche;
     int nbPoint;
-    string teamNom;
+    vector<PaquetCarte> plisGagne;
     vector<shared_ptr<Joueur>> joueurs;
 
 public:
@@ -30,8 +29,10 @@ public:
 
     void addPlisGagne(PaquetCarte&  plis);
 
-    // on renvoie l'adresse du vecteur de pointeurs (pour éviter de le recopier inutillement)
-    const vector<PaquetCarte>& getPlisGagne() const;
+    // on copie pas inutilement le string (on le prend par réfernce)
+    void setTeamNom(const string& nom);
+
+    string getTeamNom();
 
     void setPointManche(int nb);
 
@@ -41,17 +42,14 @@ public:
 
     int getNbPoint();
 
-    // on copie pas inutilement le string (on le prend par réfernce)
-    void setTeamNom(const string& nom);
-
-    string getTeamNom();
+    // on renvoie l'adresse du vecteur de pointeurs (pour éviter de le recopier inutillement)
+    const vector<PaquetCarte>& getPlisGagne() const;
 
     void setJoueurs(vector<shared_ptr<Joueur>> joueurs);
 
     const vector<shared_ptr<Joueur>>& getJoueurs() const;
-
-   
 };
 
 #endif
+
 

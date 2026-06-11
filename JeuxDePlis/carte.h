@@ -10,16 +10,19 @@
 class PaquetCarte;
 
 using namespace std;
+
 class Carte
 {
 private:
 	string couleur;
-	string valeur;
 
+	string valeur;
 
 public:
 
 	Carte();
+
+	bool checkCouleurPlisDansMain(const PaquetCarte& main);
 
 	void setValeur(string valeur);
 
@@ -28,8 +31,6 @@ public:
 	void setCouleur(string couleur);
 
 	string getCouleur() const;
-
-	bool checkCouleurPlisDansMain(const PaquetCarte& main);
 
 	string toString() const;
 

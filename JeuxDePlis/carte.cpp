@@ -10,28 +10,7 @@
 
 Carte::Carte() {};
 
-void Carte::setValeur(string newvaleur)
-{
-    valeur = newvaleur;
-}
-
-string Carte::getValeur() const
-{
-    return valeur;
-}
-
-void Carte::setCouleur(string newcouleur)
-{
-    couleur = newcouleur;
-}
-
-string  Carte::getCouleur() const
-{
-    return couleur;
-}
-
-bool Carte::checkCouleurPlisDansMain(const PaquetCarte& main)
-{
+bool Carte::checkCouleurPlisDansMain(const PaquetCarte& main){
     Jeu* jeuCourant = Jeu::getJeuCourant();
     TableJeu& table = jeuCourant->getTable();
     PaquetCarte& plis = table.getPlis();
@@ -42,6 +21,22 @@ bool Carte::checkCouleurPlisDansMain(const PaquetCarte& main)
         }
     }
     return false;
+}
+
+void Carte::setValeur(string newvaleur){
+    valeur = newvaleur;
+}
+
+string Carte::getValeur() const{
+    return valeur;
+}
+
+void Carte::setCouleur(string newcouleur){
+    couleur = newcouleur;
+}
+
+string  Carte::getCouleur() const{
+    return couleur;
 }
 
 string Carte::toString() const {

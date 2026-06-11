@@ -7,12 +7,7 @@
 #include <random>
 #include "PaquetCarte.h"
 
-
-
-PaquetCarte::PaquetCarte()
-{
-}
-
+PaquetCarte::PaquetCarte(){}
 
 void PaquetCarte::afficherPaquet()
 {
@@ -27,7 +22,6 @@ void PaquetCarte::addCarte(std::unique_ptr<Carte> carte)
 	listeCartePaquet.push_back(move(carte)); // ajoute la carte au paquet en transférant la propriété du pointeur unique
 }
 
-
 void PaquetCarte::giveCard(size_t indexCarte, PaquetCarte& destination)
 {
 	assert(indexCarte < listeCartePaquet.size());      //vérifie que l'index est valide
@@ -36,7 +30,6 @@ void PaquetCarte::giveCard(size_t indexCarte, PaquetCarte& destination)
 
 	listeCartePaquet.erase(listeCartePaquet.begin() + indexCarte); // supprime le pointeur null après l'avoir transférée
 }
-
 
 void PaquetCarte::deleteCard()
 {
@@ -56,4 +49,8 @@ void PaquetCarte::MelangerPaquet()
 	std::random_device rd;
 	std::mt19937 gen(rd());
 	std::shuffle(listeCartePaquet.begin(),listeCartePaquet.end(),gen);
+}
+
+size_t PaquetCarte::PaquetSize() const { 
+	return listeCartePaquet.size();
 }
