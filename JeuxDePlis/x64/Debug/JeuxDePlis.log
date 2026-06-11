@@ -1,7 +1,7 @@
 ﻿  Analyse des sources à la recherche des dépendances de module...
-  Carte.cpp
-  Joueur.cpp
+  DameDePique.cpp
+  JeuManager.cpp
   main.cpp
-  Team.cpp
+  TableJeu.cpp
   Génération de code en cours...
   JeuxDePlis.vcxproj -> C:\Users\Anaelle\Documents\Anaëlle\3A\S6\Projet C++ Modern\JeuxDePlis\x64\Debug\JeuxDePlis.exe

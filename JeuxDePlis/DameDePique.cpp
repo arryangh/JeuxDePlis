@@ -39,13 +39,14 @@ bool DameDePique::checkCoeurBrise() {
 	return Coeur_Brise; 
 }
 
-void DameDePique::checkWin() {
+bool DameDePique::checkWin() {
 	for (size_t i = 0; i < getNbEquipe(); i++) {
 		if (getTeam()[i]->getNbPoint() >= getPointsGagnant()) {
 			cout << "L'équipe " << getTeam()[i]->getTeamNom() << " a gagné !" << endl;
-			exit(0);
+			return true;
 		}
 	}
+	return false;
 }
 
 int DameDePique::gagnantPlis() {
@@ -172,4 +173,8 @@ void DameDePique::compterPoint() {
 		getTeam()[i]->setNbPoint(
 			getTeam()[i]->getNbPoint() + pointEquipe);
 	}
+}
+
+void DameDePique::jouer() {
+
 }

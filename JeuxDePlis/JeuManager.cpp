@@ -60,3 +60,7 @@ Jeu* JeuManager::InstancierJeuChoisi(int choix) {
         return nullptr;
     }
 }
+
+void JeuManager::ChoixJoueurs() {
+
+}
