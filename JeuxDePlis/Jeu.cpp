@@ -11,16 +11,6 @@ Jeu* Jeu::jeuCourant = nullptr;
 		
 Jeu::Jeu() {};
 
-
-void Jeu::setDistribution(int newNb){
-	distribution = newNb;
-}
-
-int Jeu::getDistribution()
-{
-	return distribution;
-}
-
 void Jeu::setNbJoueurs(int newNb){
 	nbJoueurs = newNb;
 }

@@ -33,7 +33,7 @@ public :
 
 	void distribuer() override;
 
-	void checkWin() override;
+	bool checkWin() override;
 
 	int gagnantPlis();
 
@@ -47,6 +47,7 @@ public :
 
 	bool checkCoeurBrise();
 
+	void jouer();
 
 };
 #endif

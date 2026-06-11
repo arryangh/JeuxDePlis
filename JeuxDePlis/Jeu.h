@@ -24,8 +24,6 @@ private:
 
 protected:
 
-	int distribution;
-
 	int nbJoueurs;
 
 	PaquetCarte paquetJeu;
@@ -50,7 +48,7 @@ public:
 
 	virtual void distribuer() = 0;
 
-	virtual void checkWin() = 0;
+	virtual bool checkWin() = 0;
 
 	virtual list<int> carteValide(const PaquetCarte& main, const PaquetCarte& plis) = 0;
 
@@ -58,9 +56,7 @@ public:
 
 	virtual void compterPoint() = 0;
 
-	virtual void setDistribution(int newNb);
-
-	virtual int getDistribution();
+	virtual void jouer() = 0;
 
 	virtual void setNbJoueurs(int newNb);
 
