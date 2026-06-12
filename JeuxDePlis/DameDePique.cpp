@@ -49,8 +49,16 @@ list<int> DameDePique::carteValide(const PaquetCarte& main, const PaquetCarte& p
     list<int> carteValide;
     if (plis.PaquetSize() == 0) {
         if (checkCoeurBrise()) {
-            for (int i = 0; i < (int)main.PaquetSize(); i++)
-                carteValide.push_back(i);
+            int i = 0;
+            for (const auto& carte : main.getListeCartePaquet())
+                if ((carte->getCouleur() == "Pique") && (carte->getValeur() == "Dame")) {
+                    i++;
+                }
+                else {
+                    carteValide.push_back(i);
+                    i++;
+                }
+            
         }
         else {
             // Verifie si le joueur n'a QUE des coeurs
