@@ -378,12 +378,13 @@ bool DameDePique::checkWin() {
 			int pointsEquipeGagnant = getTeam()[0]->getNbPoint();
 			string nomEquipeGagnant =  getTeam()[0]->getTeamNom();
             for (size_t j = 0; j < getNbEquipe(); j++) {
-                if (getTeam()[j]->getNbPoint() > pointsEquipeGagnant) {
+                if (getTeam()[j]->getNbPoint() < pointsEquipeGagnant) {
                     pointsEquipeGagnant = getTeam()[j]->getNbPoint();
                     nomEquipeGagnant = getTeam()[j]->getTeamNom();
                 }
             }
-            return true;
+            cout << "*** " << nomEquipeGagnant << " a gagne la partie avec " << pointsEquipeGagnant << " points ***" << endl;
+            return true;    
 
         }
     }
