@@ -10,17 +10,30 @@ void JeuManager::afficherText(string s) {
 
 int JeuManager::ChoixDuJeu() {
     int choixJeu = 0;
-    while (choixJeu < 1 || choixJeu > 3) {
-        afficherText("Bienvenu dans JeuDePlis!");
-        afficherText("Choisissez votre jeu de Plis");
-        afficherText("1: Dame De Pique");
-        afficherText("2: Jeu 2");
-        afficherText("3: Jeu 3");
-        cout << "Votre choix: ";
-        cin >> choixJeu;
-        if (choixJeu < 1 || choixJeu > 3)
-            afficherText("Choix invalide! Veuillez entrer 1, 2 ou 3.");
+    bool confirme = false;
+
+    while (!confirme) {
+        while (choixJeu < 1 || choixJeu > 3) {
+            afficherText("Bienvenue dans JeuDePlis !");
+            afficherText("Choisissez votre jeu :");
+            afficherText("1: Dame De Pique");
+            afficherText("2: Jeu 2");
+            afficherText("3: Jeu 3");
+            cout << "Votre choix: ";
+            cin >> choixJeu;
+            if (choixJeu < 1 || choixJeu > 3)
+                afficherText("Choix invalide ! Veuillez entrer 1, 2 ou 3.");
+        }
+
+        afficherText("Etes-vous sur de votre choix ? (0: oui, 1: changer)");
+        int confirm;
+        cin >> confirm;
+        if (confirm == 0)
+            confirme = true;
+        else
+            choixJeu = 0;
     }
+
     return choixJeu;
 }
 

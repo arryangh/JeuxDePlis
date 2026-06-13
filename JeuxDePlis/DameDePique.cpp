@@ -3,10 +3,12 @@
 #include <list>
 #include <iostream>
 #include <assert.h>
+#include <limits>
 #include "Team.h"
 #include "DameDePique.h"
 #include "TableJeu.h"
 #include "Humain.h"
+#include "IA.h"
 
 static void clearConsole() {
 #ifdef _WIN32
@@ -19,7 +21,8 @@ static void clearConsole() {
 static void attendreEntree(const string& message) {
     cout << message;
     cin.clear();
-    cin.ignore(1000, '\n');
+    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    cin.get();
 }
 
 DameDePique::DameDePique() {
@@ -30,6 +33,7 @@ DameDePique::DameDePique() {
     ordreCarte = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "Valet", "Dame", "Roi", "As" };
     table = new TableJeu();
     Coeur_Brise = false;
+    premierPli = true;
 }
 
 const int DameDePique::playNext() {
@@ -48,27 +52,20 @@ void DameDePique::distribuer() {
 list<int> DameDePique::carteValide(const PaquetCarte& main, const PaquetCarte& plis) {
     list<int> carteValide;
     if (plis.PaquetSize() == 0) {
-        if (checkCoeurBrise()) {
-            int i = 0;
-            for (const auto& carte : main.getListeCartePaquet())
-                if ((carte->getCouleur() == "Pique") && (carte->getValeur() == "Dame")) {
-                    i++;
-                }
-                else {
-                    carteValide.push_back(i);
-                    i++;
-                }
-            
-        }
-        else {
-            // Verifie si le joueur n'a QUE des coeurs
-            bool toutCoeur = true;
-            for (const auto& carte : main.getListeCartePaquet())
-                if (carte->getCouleur() != "Coeur") { toutCoeur = false; break; }
+        bool toutInterdit = true;
+        for (const auto& carte : main.getListeCartePaquet())
+            if (carte->getCouleur() != "Coeur" && !(premierPli && carte->getCouleur() == "Pique" && carte->getValeur() == "Dame"))
+            {
+                toutInterdit = false; break;
+            }
 
-            for (int i = 0; i < (int)main.PaquetSize(); i++)
-                if (toutCoeur || main.getListeCartePaquet()[i]->getCouleur() != "Coeur")
-                    carteValide.push_back(i);
+        for (int i = 0; i < (int)main.PaquetSize(); i++) {
+            const auto& carte = main.getListeCartePaquet()[i];
+            bool estDamePique = premierPli && carte->getCouleur() == "Pique" && carte->getValeur() == "Dame";
+            bool estCoeurInterdit = !checkCoeurBrise() && carte->getCouleur() == "Coeur";
+
+            if (toutInterdit || (!estDamePique && !estCoeurInterdit))
+                carteValide.push_back(i);
         }
     }
     else {
@@ -94,7 +91,7 @@ const int DameDePique::playFirst() {
             for (const auto& carte : getJoueurById(i)->getMain().getListeCartePaquet()) {
                 if (carte->getValeur() == "2" && carte->getCouleur() == "Trèfle") {
                     table->setIdPremierJoueur(i);
-                    cout << getJoueurById(i)->getNom() << " commence (possède le 2 de Trèfle)." << endl;
+                    cout << getJoueurById(i)->getNom() << " commence car 2 de Trèfle." << endl;
                     return i;
                 }
             }
@@ -104,28 +101,26 @@ const int DameDePique::playFirst() {
 }
 
 void DameDePique::compterPoint() {
-    cout << "\n--- Resultat de la manche ---" << endl;
+    for (int i = 0; i < (int)getNbEquipe(); i++)
+        getTeam()[i]->setPointManche(0);
+
     for (int i = 0; i < getNbJoueurs(); i++) {
-        int pointManche = 0;
-        for (const auto& pli : getTeam()[i]->getPlisGagne())
+        Team* team = getTeam()[i];
+        for (const auto& pli : team->getPlisGagne())
             for (const auto& carte : pli.getListeCartePaquet()) {
-                if (carte->getCouleur() == "Coeur") pointManche += 1;
-                else if (carte->getCouleur() == "Pique" && carte->getValeur() == "Dame") pointManche += 13;
+                if (carte->getCouleur() == "Coeur")
+                    team->setPointManche(team->getPointManche() + 1);
+                else if (carte->getCouleur() == "Pique" && carte->getValeur() == "Dame")
+                    team->setPointManche(team->getPointManche() + 13);
             }
 
-        if (pointManche == 26) {
-            cout << getTeam()[i]->getTeamNom() << " a fait le grand chelem ! (+26 pour tous les autres)" << endl;
-            pointManche = 0;
+        if (team->getPointManche() == 26) {
+            cout << team->getTeamNom() << " a fait le grand chelem ! (+26 pour tous les autres)" << endl;
+            team->setPointManche(0);
             for (int j = 0; j < (int)getNbEquipe(); j++)
                 if (j != i) getTeam()[j]->setNbPoint(getTeam()[j]->getNbPoint() + 26);
         }
-        getTeam()[i]->setNbPoint(getTeam()[i]->getNbPoint() + pointManche);
-        cout << getTeam()[i]->getTeamNom() << " : +" << pointManche << " pts cette manche" << endl;
     }
-
-    cout << "\n--- Scores cumules ---" << endl;
-    for (int i = 0; i < (int)getNbEquipe(); i++)
-        cout << getTeam()[i]->getTeamNom() << " : " << getTeam()[i]->getNbPoint() << " pts" << endl;
 }
 
 void DameDePique::configurerTeam() {
@@ -138,15 +133,13 @@ void DameDePique::configurerTeam() {
     setTeam(teams);
 }
 
-// Affiche les scores de tous les joueurs
 void DameDePique::afficherScores() {
     cout << "=== SCORES ===" << endl;
     for (int i = 0; i < (int)getNbEquipe(); i++)
-        cout << "  " << getTeam()[i]->getTeamNom() << " : " << getTeam()[i]->getNbPoint() << " pts" << endl;
+        cout << "  " << getTeam()[i]->getTeamNom() << " : " << getTeam()[i]->getPointManche() << " pts" << endl;
     cout << endl;
 }
 
-// Affiche les cartes posees sur la table avec le nom du joueur qui les a jouees
 void DameDePique::afficherPliEnCours(int premierJoueur) {
     PaquetCarte& plis = getTable().getPlis();
     if (plis.PaquetSize() == 0) {
@@ -173,14 +166,15 @@ void DameDePique::jouer() {
         cout << "========== MANCHE " << numeroManche << " ==========" << endl;
         paquetJeu.MelangerPaquet();
         distribuer();
+        echangerCartes(numeroManche);
         playFirst();
+        premierPli = true;
         attendreEntree("(Appuyez sur Entree pour commencer la manche...)");
 
         int numPli = 1;
         while (getJoueurById(0)->getMain().PaquetSize() > 0) {
             int premierJoueur = table->getIdPremierJoueur();
 
-            // Chaque joueur joue a son tour
             for (int i = 0; i < getNbJoueurs(); i++) {
                 int idJoueur = (premierJoueur + i) % getNbJoueurs();
                 Joueur* joueur = getJoueurById(idJoueur);
@@ -193,7 +187,6 @@ void DameDePique::jouer() {
                     afficherPliEnCours(premierJoueur);
                     cout << endl;
 
-                    // L'IA joue, on affiche ce qu'elle a joue
                     size_t tailleAvant = table->getPlis().PaquetSize();
                     joueur->jouerCoup();
                     if (table->getPlis().PaquetSize() > tailleAvant) {
@@ -204,12 +197,12 @@ void DameDePique::jouer() {
                     attendreEntree("(Appuyez sur Entree pour continuer...)");
                 }
                 else {
-                    // jouerCoup() de Humain gere son propre affichage et clear
                     joueur->jouerCoup();
                 }
             }
 
-            // Verifie si les coeurs sont brises
+            premierPli = false;
+
             if (!Coeur_Brise) {
                 for (const auto& carte : table->getPlis().getListeCartePaquet())
                     if (carte->getCouleur() == "Coeur") { Coeur_Brise = true; break; }
@@ -217,7 +210,6 @@ void DameDePique::jouer() {
 
             int idgagnant = gagnantPlis();
 
-            // Resultat du pli
             clearConsole();
             cout << "--- Resultat du pli " << numPli << " ---" << endl << endl;
             for (size_t k = 0; k < table->getPlis().PaquetSize(); k++) {
@@ -227,18 +219,17 @@ void DameDePique::jouer() {
             }
             cout << "\n--> " << getJoueurById(idgagnant)->getNom() << " remporte le pli !" << endl;
             if (Coeur_Brise) cout << "  (Les coeurs sont brises)" << endl;
-
             cout << endl;
-            afficherScores();
 
-            // Donner le pli a l'equipe gagnante
-            for (int i = 0; i < (int)getNbEquipe(); i++)
-                for (const auto& j : getTeam()[i]->getJoueurs())
-                    if (j->getIdjoueur() == idgagnant) {
-                        getTeam()[i]->addPlisGagne(table->getPlis());
-                        goto plisAttribue;
-                    }
-        plisAttribue:
+            for (int i = 0; i < (int)getNbEquipe(); i++) {
+                if (getTeam()[i]->getJoueurs()[0]->getIdjoueur() == idgagnant) {
+                    getTeam()[i]->addPlisGagne(table->getPlis());
+                    break;
+                }
+            }
+
+            compterPoint();
+            afficherScores();
             numPli++;
 
             attendreEntree("(Appuyez sur Entree pour continuer...)");
@@ -246,13 +237,98 @@ void DameDePique::jouer() {
         }
 
         compterPoint();
+        cout << "\n--- Resultat de la manche ---" << endl;
+        for (int i = 0; i < (int)getNbEquipe(); i++) {
+            getTeam()[i]->setNbPoint(getTeam()[i]->getNbPoint() + getTeam()[i]->getPointManche());
+            cout << getTeam()[i]->getTeamNom() << " : +" << getTeam()[i]->getPointManche() << " pts" << endl;
+        }
+        cout << "\n--- Scores totaux ---" << endl;
         for (int i = 0; i < (int)getNbEquipe(); i++)
+            cout << getTeam()[i]->getTeamNom() << " : " << getTeam()[i]->getNbPoint() << " pts" << endl;
+
+        for (int i = 0; i < (int)getNbEquipe(); i++) {
             getTeam()[i]->clearPlis();
+            getTeam()[i]->setPointManche(0);
+        }
         creerPaquetJeu();
         numeroManche++;
         Coeur_Brise = false;
+        premierPli = true;
 
         attendreEntree("\n(Appuyez sur Entree pour la prochaine manche...)");
+    }
+}
+
+void DameDePique::echangerCartes(int numeroManche) {
+    attendreEntree("On passe à l'échange des cartes appuyez sur Entree...");
+
+    int type = (numeroManche - 1) % 4;
+
+    vector<PaquetCarte> cartesADonner(getNbJoueurs());
+
+    for (int i = 0; i < getNbJoueurs(); i++) {
+        clearConsole();
+
+        if (type == 3) {
+            cout << "Pas de don à cette manche !" << endl;
+            attendreEntree("(Appuyez sur Entree pour continuer...)");
+            return;
+        }
+
+        string direction;
+        if (type == 0) direction = "gauche";
+        else if (type == 1) direction = "face";
+        else direction = "droite";
+
+        Joueur* joueur = getJoueurById(i);
+        bool estIA = (dynamic_cast<Humain*>(joueur) == nullptr);
+
+        for (int k = 0; k < 3; k++) {
+            int indexCarte;
+            if (estIA) {
+                IA* ia = dynamic_cast<IA*>(joueur);
+                indexCarte = ia->randomIndex((int)joueur->getMain().PaquetSize());
+            }
+            else {
+                cout << "Donne 3 cartes au joueur de " << direction << " !" << endl;
+                cout << "\n" << joueur->getNom() << " choisit 3 cartes a donner :" << endl;
+                cout << "Votre main :" << endl;
+                for (int j = 0; j < (int)joueur->getMain().PaquetSize(); j++) {
+                    const auto& c = joueur->getMain().getListeCartePaquet()[j];
+                    cout << "  " << j << " -> " << c->getValeur() << " de " << c->getCouleur() << endl;
+                }
+                cout << "Choisissez la carte " << k + 1 << "/3 (index) : ";
+                cin >> indexCarte;
+                while (indexCarte < 0 || indexCarte >= (int)joueur->getMain().PaquetSize()) {
+                    cout << "Index invalide, reessayez : ";
+                    cin >> indexCarte;
+                }
+            }
+            const auto& c = joueur->getMain().getListeCartePaquet()[indexCarte];
+            if (!estIA) {
+                cout << "  Vous avez choisis : " << c->getValeur() << " de " << c->getCouleur() << endl;
+            }
+            joueur->getMain().giveCard(indexCarte, cartesADonner[i]);
+        }
+
+        if (!estIA)
+        {
+            attendreEntree("\n(Appuyez sur Entree pour terminer votre echange...)");
+            clearConsole();
+
+            attendreEntree("Passez au joueur suivant appuyez sur Entree...");
+            clearConsole();
+        }
+    }
+
+    for (int i = 0; i < getNbJoueurs(); i++) {
+        int destination;
+        if (type == 0)      destination = (i + 1) % getNbJoueurs();
+        else if (type == 1) destination = (i + 2) % getNbJoueurs();
+        else                destination = (i - 1 + getNbJoueurs()) % getNbJoueurs();
+
+        while (cartesADonner[i].PaquetSize() > 0)
+            cartesADonner[i].giveCard(0, getJoueurById(destination)->getMain());
     }
 }
 

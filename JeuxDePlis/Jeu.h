@@ -70,6 +70,8 @@ public:
 
 	virtual void jouer() = 0;
 
+	virtual void echangerCartes(int numeroManche) {};
+
 	virtual size_t getNbEquipe();
 
 	virtual void setNbJoueurs(int newNb);

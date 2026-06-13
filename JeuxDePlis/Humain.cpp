@@ -27,8 +27,8 @@ static void afficherScores() {
     Jeu* jeu = Jeu::getJeuCourant();
     cout << "=== SCORES ===" << endl;
     for (size_t i = 0; i < jeu->getNbEquipe(); i++) {
-        const auto& t = jeu->getTeam()[i];
-        cout << "  " << t->getTeamNom() << " : " << t->getNbPoint() << " pts" << endl;
+        const auto& team = jeu->getTeam()[i];
+        cout << "  " << team->getTeamNom() << " : " << team->getPointManche() << " pts" << endl;
     }
     cout << endl;
 }
@@ -42,9 +42,9 @@ static void afficherPliEnCours(const PaquetCarte& plis, int idPremierJoueur) {
     else {
         cout << "Pli en cours : ";
         for (size_t i = 0; i < plis.PaquetSize(); i++) {
-            const auto& c = plis.getListeCartePaquet()[i];
+            const auto& carte = plis.getListeCartePaquet()[i];
             string nom = jeu->getJoueurById((idPremierJoueur + (int)i) % jeu->getNbJoueurs())->getNom();
-            cout << nom << " [" << c->getValeur() << " de " << c->getCouleur() << "]  ";
+            cout << nom << " [" << carte->getValeur() << " de " << carte->getCouleur() << "]  ";
         }
         cout << endl;
     }
@@ -64,8 +64,8 @@ int Humain::choisirCarte(const vector<int>& cartesJouables) {
 void Humain::afficherCartesJouables(const vector<int>& jouables, const PaquetCarte& main) {
     cout << "\nCartes jouables :" << endl;
     for (int i = 0; i < (int)jouables.size(); i++) {
-        const auto& c = main.getListeCartePaquet()[jouables[i]];
-        cout << "  " << i << " -> " << c->getValeur() << " de " << c->getCouleur() << endl;
+        const auto& carte = main.getListeCartePaquet()[jouables[i]];
+        cout << "  " << i << " -> " << carte->getValeur() << " de " << carte->getCouleur() << endl;
     }
 }
 
@@ -75,25 +75,21 @@ void Humain::jouerCoup() {
     PaquetCarte& plis = table.getPlis();
     int idPremierJoueur = table.getIdPremierJoueur();
 
-    // Écran de transition : on cache le jeu du joueur précédent
     clearConsole();
     cout << "=== Au tour de : " << getNom() << " ===" << endl;
     attendreEntree("(Appuyez sur Entrée pour voir votre jeu...)");
 
-    // Affichage du tour
     clearConsole();
     cout << "=== Tour de : " << getNom() << " ===" << endl << endl;
 
     afficherScores();
     afficherPliEnCours(plis, idPremierJoueur);
 
-    // Main complète
     cout << "\nVotre main (" << getMain().PaquetSize() << " cartes) :" << endl;
     const auto& cartes = getMain().getListeCartePaquet();
     for (size_t i = 0; i < cartes.size(); i++)
         cout << "  [" << i << "] " << cartes[i]->getValeur() << " de " << cartes[i]->getCouleur() << endl;
 
-    // Cartes jouables et choix
     list<int> cartesJouables = jeuCourant->carteValide(getMain(), plis);
     vector<int> jouables(cartesJouables.begin(), cartesJouables.end());
     afficherCartesJouables(jouables, getMain());

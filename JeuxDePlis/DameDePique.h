@@ -20,6 +20,8 @@ private:
 
 	bool Coeur_Brise;
 
+	bool premierPli;
+
 public:
 
 	DameDePique();
@@ -39,6 +41,8 @@ public:
 	void configurerTeam() override;
 
 	void jouer() override;
+
+	void echangerCartes(int numeroManche) override;
 
 	static Jeu* getInstance();
 
